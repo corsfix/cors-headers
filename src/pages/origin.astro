@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Origin",
+  slug: "origin",
+  description:
+    "The Origin header indicates the origin (scheme, hostname, and port) that initiated the request. Browsers automatically set this header on cross-origin requests and same-origin POST, PUT, DELETE requests. Servers use this header to validate requests and set appropriate CORS headers.",
+  syntax: [
+    "Origin: https://example.com",
+    "Origin: https://example.com:3000",
+    "Origin: null",
+  ],
+  examples: {
+    client: `// Browser automatically sets Origin header on cross-origin requests
+fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ message: 'Hello' })
+  // Browser automatically adds: Origin: https://your-domain.com
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));`,
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  if (origin) {
+    console.log(\`Request from origin: \${origin}\`);
+    
+    // Validate origin against allowlist
+    const allowedOrigins = ['https://your-frontend.com', 'https://app.example.com'];
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+  }
+  
+  next();
+});
+
+app.get('/data', (req, res) => {
+  res.json({ message: 'Hello from API' });
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+  },
+  errors: [
+    {
+      msg: "Origin header missing or doesn't match server expectations",
+      fix: "Ensure your server validates the Origin header against an allowlist of trusted domains. Set Access-Control-Allow-Origin to the specific origin or configure your CORS middleware correctly.",
+    },
+  ],
+  related: [
+    {
+      name: "Access-Control-Allow-Origin",
+      slug: "access-control-allow-origin",
+    },
+  ],
+  faq: [
+    {
+      q: "Do I need to set the Origin header manually?",
+      a: "No, browsers automatically set the Origin header. You cannot manually override it in client-side JavaScript for security reasons.",
+    },
+    {
+      q: "What does 'Origin: null' mean?",
+      a: "This appears for requests from local files (file://), sandboxed iframes, or certain privacy contexts. Handle with caution as it can have security implications.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Allow-Origin",
+  slug: "access-control-allow-origin",
+  description:
+    "Browsers by default enforce the Same-Origin Policy, which controls how webpages interact with each other. This includes preventing a website from communicating with resources from a different origin. The Access-Control-Allow-Origin header relaxes this policy by specifying which origins have access to its content. Without this header, browsers will not be able to read the response from the other origin.",
+  syntax: [
+    "Access-Control-Allow-Origin: https://example.com",
+    "Access-Control-Allow-Origin: https://example.com:4242",
+    "Access-Control-Allow-Origin: *",
+    "Access-Control-Allow-Origin: null",
+  ],
+  examples: {
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+// Middleware to set ACAO header
+app.use((req, res, next) => {
+  // Allow requests from a specific origin
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+
+  // Alternatively, to allow requests from any origin
+  // res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.get('/data', (req, res) => {
+  res.json({ message: 'This is CORS-enabled data!' });
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+    client: `// JavaScript Fetch API example (client-side)
+fetch('https://api.example.com/data', {
+  method: 'GET',
+  // No ACAO header is set on the request from the client.
+  // The server will respond with the ACAO header.
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));`,
+  },
+  errors: [
+    {
+      msg: "No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      fix: "Ensure your server is configured to send the 'Access-Control-Allow-Origin' header. For example, in Express.js, you can use middleware: `res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend.domain.com');` or `res.setHeader('Access-Control-Allow-Origin', '*');`.",
+    },
+    {
+      msg: "The 'Access-Control-Allow-Origin' header has a value 'https://another-domain.com' that is not equal to the supplied origin 'https://my-frontend.com'.",
+      fix: "The server must return the exact origin that made the request if you are not using the wildcard '*'. Your server-side logic should dynamically check the 'Origin' request header and set the 'Access-Control-Allow-Origin' to that specific origin if it's on an allowed list. For example: `res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');` (ensure to validate req.headers.origin against an allowlist).",
+    },
+    {
+      msg: "Preflight request doesn't have HTTP ok status. (No 'Access-Control-Allow-Origin' header is present on the requested resource for an OPTIONS request)",
+      fix: "For requests that trigger a preflight (e.g., using methods other than GET/HEAD/POST, or with custom headers), the server must respond to the OPTIONS request with a 2xx status (typically 204 No Content) and include the 'Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', and 'Access-Control-Allow-Headers' headers. Ensure your server handles OPTIONS requests correctly.",
+    },
+  ],
+  related: [
+    { name: "Origin", slug: "origin" },
+    {
+      name: "Access-Control-Allow-Credentials",
+      slug: "access-control-allow-credentials",
+    },
+  ],
+  faq: [
+    {
+      q: "Can I set multiple origins in a single Access-Control-Allow-Origin header?",
+      a: "No, the 'Access-Control-Allow-Origin' header can only contain a single origin or the wildcard '*'. It does not support a space-separated list of origins. To support multiple specific origins, your server-side application must implement logic to check the 'Origin' header of the incoming request and then set the 'Access-Control-Allow-Origin' header to that specific origin if it is in your list of allowed origins. If the requesting origin is not allowed, you should not set the ACAO header, or set it to a default restricted origin.",
+    },
+    {
+      q: "What is the difference between Access-Control-Allow-Origin: * and Access-Control-Allow-Origin: null?",
+      a: "The former '*' allows any origin to access the resource, while 'null' is a special value that can be returned for requests originating from 'null' origins (e.g., local HTML files opened via file://, or sandboxed iframes).",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

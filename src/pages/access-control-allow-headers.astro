@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Allow-Headers",
+  slug: "access-control-allow-headers",
+  description:
+    "The Access-Control-Allow-Headers (ACAH) header specifies which headers can be used in the actual cross-origin request. This header is part of the preflight request mechanism. When you send a cross-origin request with non-safelisted headers, the browser will make a preflight request to see if the actual request can be sent. To allow the request, the server must respond with the appropriate `Access-Control-Allow-Headers` containing the allowed headers.",
+  syntax: [
+    "Access-Control-Allow-Headers: X-API-Key, X-Trace-Id",
+    "Access-Control-Allow-Headers: Content-Type",
+    "Access-Control-Allow-Headers: *",
+  ],
+  examples: {
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+// Middleware to handle CORS headers for preflight requests
+app.use((req, res, next) => {
+  // Allow requests from a specific origin
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+  
+  // Handle preflight OPTIONS requests
+  if (req.method === 'OPTIONS') {
+    // Specify which headers are allowed in the actual request
+    res.setHeader('Access-Control-Allow-Headers', 'X-API-Key, X-Trace-Id, Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.status(204).send();
+    return;
+  }
+  
+  next();
+});
+
+app.get('/data', (req, res) => {
+  res.json({ message: 'This is CORS-enabled data with custom headers!' });
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+    client: `// JavaScript Fetch API example (client-side)
+fetch('https://api.example.com/data', {
+  method: 'GET',
+  headers: {
+    'X-API-Key': 'your-api-key',
+    'X-Trace-Id': 'trace-123',
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));`,
+  },
+  errors: [
+    {
+      msg: "Missing token (e.g., 'xyz') in the CORS `Access-Control-Allow-Headers` header.",
+      fix: "Ensure the server's response includes the required header token in the `Access-Control-Allow-Headers` value.",
+    },
+  ],
+  related: [
+    {
+      name: "Access-Control-Request-Headers",
+      slug: "access-control-request-headers",
+    },
+    {
+      name: "Access-Control-Allow-Methods",
+      slug: "access-control-allow-methods",
+    },
+  ],
+  faq: [
+    {
+      q: "Is the `Access-Control-Allow-Headers` (ACAH) header needed on the actual resource response?",
+      a: "No. Only the **preflight** response needs it.",
+    },
+    {
+      q: "Can I enable all headers?",
+      a: "Yes, you can use `*` (e.g., `Access-Control-Allow-Headers: *`).",
+    },
+    {
+      q: "Is the Access-Control-Allow-Headers header case-sensitive?",
+      a: "No, HTTP header names are generally case-insensitive. However, the values (the header names listed) might be case-sensitive depending on the server-side implementation, though the specification implies they should be treated case-insensitively.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

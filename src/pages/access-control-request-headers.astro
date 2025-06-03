@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Request-Headers",
+  slug: "access-control-request-headers",
+  description:
+    "The Access-Control-Request-Headers header is automatically sent by the browser during preflight requests. Lists the headers that will be included in the actual request, allowing the server to approve or deny them.",
+  syntax: ["Access-Control-Request-Headers: <header-name>, <header-name>, ..."],
+  examples: {
+    client: `// When you make a request with custom headers:
+fetch('https://api.example.com/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Custom-Header': 'value'
+  }
+});
+
+// Browser automatically sends preflight with:
+// Access-Control-Request-Headers: content-type, x-custom-header`,
+  },
+  errors: [],
+  related: [
+    {
+      name: "Access-Control-Allow-Headers",
+      slug: "access-control-allow-headers",
+    },
+    {
+      name: "Access-Control-Allow-Methods",
+      slug: "access-control-allow-methods",
+    },
+  ],
+  faq: [
+    {
+      q: "Do I need to set this header manually?",
+      a: "No, the browser automatically sends this header during preflight requests based on the headers in your actual request.",
+    },
+    {
+      q: "When is this header sent?",
+      a: "During preflight requests when your request includes custom headers or uses certain methods that require CORS preflight.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

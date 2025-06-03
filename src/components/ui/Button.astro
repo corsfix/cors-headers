@@ -1,0 +1,49 @@
+---
+interface Props {
+  asChild?: boolean;
+  href?: string;
+  variant?: "primary" | "secondary" | "default";
+  size?: "sm" | "md" | "lg" | "icon";
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  asChild = false,
+  href,
+  variant = "default",
+  size = "md",
+  class: className,
+  ...rest
+} = Astro.props as Props;
+
+const baseClasses =
+  "font-bold border-2 border-black shadow-[4px_4px_0px_0px_#000]";
+const variantClasses = {
+  default: "bg-yellow-300 text-black hover:bg-yellow-400",
+  secondary: "bg-cyan-300 text-black hover:bg-cyan-400",
+  // Add other variants if needed, e.g., for the "Try Corsfix free" button
+  black: "bg-black text-white hover:text-yellow-300 hover:bg-black",
+};
+const sizeClasses = {
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-4 py-2 text-base",
+  lg: "px-6 py-3 text-lg",
+  icon: "p-2",
+};
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  class:list={[
+    baseClasses,
+    variantClasses[variant === "primary" ? "default" : variant], // map primary to default or handle separately
+    sizeClasses[size],
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>

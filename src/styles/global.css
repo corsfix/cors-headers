@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Animated underline effect */
+.animated-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.2s ease-in-out;
+}
+
+.animated-underline:hover::after,
+.animated-underline:focus::after {
+  width: 100%;
+}

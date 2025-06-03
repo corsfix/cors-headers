@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Max-Age",
+  slug: "access-control-max-age",
+  description:
+    "The `Access-Control-Max-Age` header tells browsers how long they can cache the results of a CORS preflight request. The header is part of the preflight request response and controls how long the browser can cache the preflight result (the information about which methods and headers are allowed for a specific resource). Caching the preflight response is crucial for performance, as it reduces the number of preflight requests that need to be made. Normally, every CORS request would require a preflight, but with this header, subsequent identical CORS requests can skip the preflight check for the duration specified, thereby reducing latency.",
+  syntax: ["Access-Control-Max-Age: 86400"],
+  examples: {
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+// Middleware to handle CORS preflight requests
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Cache preflight response for 1 day (86400 seconds)
+  res.setHeader('Access-Control-Max-Age', '86400');
+  
+  res.status(204).send();
+});
+
+app.get('/data', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+  res.json({ message: 'This is CORS-enabled data!' });
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+  },
+  errors: [
+    {
+      msg: "Preflight requests still being sent for every request despite setting this header",
+      fix: "Ensure the header is sent in OPTIONS responses, not actual requests. Check that your value doesn't exceed browser limits (7200 for Chrome, 86400 for Firefox). Verify identical requests are being made and check the Network tab to confirm the header is present in OPTIONS responses.",
+    },
+  ],
+  related: [
+    {
+      name: "Access-Control-Allow-Origin",
+      slug: "access-control-allow-origin",
+    },
+    {
+      name: "Access-Control-Allow-Methods",
+      slug: "access-control-allow-methods",
+    },
+    {
+      name: "Access-Control-Allow-Headers",
+      slug: "access-control-allow-headers",
+    },
+  ],
+  faq: [
+    {
+      q: "What is the maximum value I can have for Access-Control-Max-Age?",
+      a: "While the specification doesn't define a strict maximum, browsers impose their own limits. It's best to check current browser documentation for the most up-to-date limits.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

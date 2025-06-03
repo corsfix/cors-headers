@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Expose-Headers",
+  slug: "access-control-expose-headers",
+  description:
+    "The Access-Control-Expose-Headers header specifies which response headers can be accessed by client-side JavaScript in cross-origin requests. In cross-origin requests, by default, browsers only expose certain headers to client JavaScript, which are CORS-safelisted headers. In order for client JavaScript to read other headers, they must be explicitly set via the Access-Control-Expose-Headers (ACEH) header. This header lets client JS read **non-safelisted response headers**.",
+  syntax: [
+    "Access-Control-Expose-Headers: X-Custom-Header",
+    "Access-Control-Expose-Headers: X-RateLimit-Remaining, X-Total-Count",
+    "Access-Control-Expose-Headers: *",
+  ],
+  examples: {
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+// Middleware to set CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+  
+  // Expose custom headers to client JavaScript
+  res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, X-RateLimit-Remaining');
+  next();
+});
+
+app.get('/api/users', (req, res) => {
+  // Set custom headers that will be exposed to the client
+  res.setHeader('X-Total-Count', '150');
+  res.setHeader('X-RateLimit-Remaining', '99');
+  
+  res.json([
+    { id: 1, name: 'John Doe' },
+    { id: 2, name: 'Jane Smith' }
+  ]);
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+    client: `// JavaScript Fetch API example (client-side)
+fetch('https://api.example.com/users', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  
+  // These headers are now accessible because the server
+  // included them in Access-Control-Expose-Headers
+  const totalCount = response.headers.get('X-Total-Count');
+  const rateLimit = response.headers.get('X-RateLimit-Remaining');
+  
+  console.log('Total items:', totalCount);
+  console.log('Rate limit remaining:', rateLimit);
+  
+  return response.json();
+})
+.then(data => {
+  console.log('Users:', data);
+})
+.catch(error => console.error('Error:', error));`,
+  },
+  errors: [
+    {
+      msg: "Header X can't be read by client JavaScript.",
+      fix: "Expose the header X by adding its name to the Access-Control-Expose-Headers response header from the server. For example: `Access-Control-Expose-Headers: X`.",
+    },
+  ],
+  related: [
+    {
+      name: "Access-Control-Allow-Origin",
+      slug: "access-control-allow-origin",
+    },
+  ],
+  faq: [
+    {
+      q: "Can I expose all headers?",
+      a: "Yes, you can use the asterisk (`*`) as a wildcard to expose all non-safelisted headers.",
+    },
+    {
+      q: "Can it contain multiple header names?",
+      a: "Yes, you can list multiple header names, separated by commas. For example: `Access-Control-Expose-Headers: Content-Length, X-My-Custom-Header`.",
+    },
+    {
+      q: "Is the Access-Control-Expose-Headers value case-sensitive?",
+      a: "No, HTTP header names are generally case-insensitive. So, `X-Custom-Header` is treated the same as `x-custom-header` when listed in ACEH.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

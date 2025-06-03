@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Request-Method",
+  slug: "access-control-request-method",
+  description:
+    "The Access-Control-Request-Method header is automatically sent by the browser during preflight requests. It tells the server which HTTP method will be used for the actual request, allowing the server to approve or deny it.",
+  syntax: ["Access-Control-Request-Method: <method>"],
+  examples: {
+    client: `// When you make a request with a non-simple method:
+fetch('https://api.example.com/data', {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+// Browser automatically sends preflight with:
+// Access-Control-Request-Method: PUT`,
+  },
+  errors: [],
+  related: [
+    {
+      name: "Access-Control-Allow-Methods",
+      slug: "access-control-allow-methods",
+    },
+    {
+      name: "Access-Control-Request-Headers",
+      slug: "access-control-request-headers",
+    },
+  ],
+  faq: [
+    {
+      q: "Do I need to set this header manually?",
+      a: "No, the browser automatically sends this header during preflight requests based on the method in your actual request.",
+    },
+    {
+      q: "When is this header sent?",
+      a: "During preflight requests when your request uses a non-simple method (anything other than GET, HEAD, or POST) or meets other CORS preflight conditions.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>

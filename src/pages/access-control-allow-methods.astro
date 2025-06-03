@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CorsHeaderArticle, {
+  type HeaderData,
+} from "../components/CorsHeaderArticle.astro";
+
+const headerData: HeaderData = {
+  name: "Access-Control-Allow-Methods",
+  slug: "access-control-allow-methods",
+  description:
+    "The Access-Control-Allow-Methods header specifies which HTTP methods are allowed when accessing a resource during a CORS preflight request. This is part of preflight request process. When making HTTP request with non-simple method (other than GET/POST/HEAD) browser will trigger a preflight mechanism to check whether the request is allowed. The server must return the Access-Control-Allow-Methods header alongside with ACAO to indicate that the method is allowed.",
+  syntax: [
+    "Access-Control-Allow-Methods: GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Methods: *",
+    "Access-Control-Allow-Methods: PUT",
+  ],
+  examples: {
+    server: `// Express.js (Node.js) example (server-side)
+const express = require('express');
+const app = express();
+
+// Middleware to handle CORS preflight and actual requests
+app.use((req, res, next) => {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');  
+    res.status(204).end();
+    return;
+  }
+  
+  next();
+});
+
+app.put('/data', (req, res) => {
+  res.json({ message: 'Data updated successfully!' });
+});
+
+const port = 3001;
+app.listen(port, () => {
+  console.log(\`Server running on port \${port}\`);
+});`,
+    client: `// JavaScript Fetch API example (client-side)
+fetch('https://api.example.com/data', {
+  method: 'PUT', // This triggers a preflight request
+  headers: {
+    'Content-Type': 'application/json',
+    // No ACAM header is set on the request from the client.
+    // The server will respond with the ACAM header during preflight.
+  },
+  body: JSON.stringify({ key: 'value' })
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));`,
+  },
+  errors: [
+    {
+      msg: "Did not find method in CORS header Access-Control-Allow-Methods",
+      fix: "Add the method to the Access-Control-Allow-Methods header on your server.",
+    },
+  ],
+  related: [
+    {
+      name: "Access-Control-Request-Method",
+      slug: "access-control-request-method",
+    },
+    {
+      name: "Access-Control-Allow-Headers",
+      slug: "access-control-allow-headers",
+    },
+  ],
+  faq: [
+    {
+      q: "Can I have multiple methods in Access-Control-Allow-Methods?",
+      a: "Yes, you can list multiple methods, separated by commas. For example: `Access-Control-Allow-Methods: GET, POST, PUT`.",
+    },
+    {
+      q: "Do I need to explicitly allow the OPTIONS method in Access-Control-Allow-Methods?",
+      a: "No, the OPTIONS method is implicitly handled by the browser during the preflight request. You don't need to list it in `Access-Control-Allow-Methods`.",
+    },
+    {
+      q: "Can I allow all methods?",
+      a: "Yes, you can use an asterisk (`*`) to allow all methods. For example: `Access-Control-Allow-Methods: *`.",
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${headerData.name} header`}
+  description={headerData.description}
+>
+  <CorsHeaderArticle data={headerData} />
+</Layout>
