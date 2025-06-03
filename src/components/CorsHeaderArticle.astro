@@ -20,13 +20,18 @@ export interface Props {
   data: HeaderData;
 }
 
+let baseUrl = import.meta.env.BASE_URL;
+if (baseUrl.length > 1 && baseUrl.endsWith("/")) {
+  baseUrl = baseUrl.slice(0, -1);
+}
+
 const { data } = Astro.props;
 ---
 
 <main class="text-black font-sans px-4 sm:px-6 lg:px-8 py-20 max-w-6xl mx-auto">
   <!-- Breadcrumb -->
   <nav class="mb-8 text-sm font-semibold space-x-1">
-    <a href="/" class="underline">CORS Headers</a>
+    <a href={`${baseUrl}`} class="underline">CORS Headers</a>
     <span>/</span>
     <span>{data.name}</span>
   </nav>
@@ -156,7 +161,7 @@ const { data } = Astro.props;
         {
           data.related.map(({ name, slug }) => (
             <li>
-              <a href={`/${slug}`} class="underline font-semibold">
+              <a href={`${baseUrl}/${slug}`} class="underline font-semibold">
                 {name}
               </a>
             </li>
