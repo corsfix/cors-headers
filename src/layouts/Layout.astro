@@ -7,6 +7,9 @@ export interface Props {
 }
 
 const { title, description } = Astro.props;
+
+const canonical = new URL(Astro.site || "");
+canonical.pathname = Astro.url.pathname.replace(/\.html$/, "");
 ---
 
 <!doctype html>
@@ -17,6 +20,7 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="canonical" href={canonical.toString()} />
   </head>
   <body class="bg-[#f7f7f7]">
     <slot />
