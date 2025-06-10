@@ -12,7 +12,6 @@ const headerData: HeaderData = {
   syntax: [
     "Access-Control-Allow-Headers: X-API-Key, X-Trace-Id",
     "Access-Control-Allow-Headers: Content-Type",
-    "Access-Control-Allow-Headers: *",
   ],
   examples: {
     server: `// Express.js (Node.js) example (server-side)
@@ -82,10 +81,6 @@ fetch('https://api.example.com/data', {
     {
       q: "Is the `Access-Control-Allow-Headers` (ACAH) header needed on the actual resource response?",
       a: "No. Only the **preflight** response needs it.",
-    },
-    {
-      q: "Can I enable all headers?",
-      a: "Yes, you can use `*` (e.g., `Access-Control-Allow-Headers: *`).",
     },
     {
       q: "Is the Access-Control-Allow-Headers header case-sensitive?",
