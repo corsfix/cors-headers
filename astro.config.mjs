@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://corsfix.com/cors-headers",
+  site: "https://corsfix.com",
   vite: {
     plugins: [tailwindcss()],
   },
