@@ -1,7 +1,4 @@
 ---
-import CtaBanner from "./CtaBanner.astro";
-import Footer from "./Footer.astro";
-
 export interface HeaderData {
   name: string;
   slug: string;
@@ -28,14 +25,9 @@ if (baseUrl.length > 1 && baseUrl.endsWith("/")) {
 const { data } = Astro.props;
 ---
 
-<main class="text-black font-sans px-4 sm:px-6 lg:px-8 py-20 max-w-6xl mx-auto">
-  <!-- Breadcrumb -->
-  <nav class="mb-8 text-sm font-semibold space-x-1">
-    <a href={`${baseUrl}`} class="underline">CORS Headers</a>
-    <span>/</span>
-    <span>{data.name}</span>
-  </nav>
-
+<main
+  class="text-black font-sans px-4 sm:px-6 lg:px-8 pt-10 pb-20 max-w-6xl mx-auto"
+>
   <!-- Title block -->
   <header class="mb-14 text-center">
     <h1
@@ -106,7 +98,9 @@ const { data } = Astro.props;
           data.examples.server && (
             <div>
               <h3 class="font-bold mb-1">SERVER</h3>
-              <pre class="bg-white border-2 border-black p-4 overflow-x-auto text-sm shadow-[2px_2px_0px_0px_#000] whitespace-pre-wrap">{data.examples.server}</pre>
+              <pre class="bg-white border-2 border-black p-4 overflow-x-auto text-sm shadow-[2px_2px_0px_0px_#000] whitespace-pre-wrap">
+                {data.examples.server}
+              </pre>
             </div>
           )
         }
@@ -114,7 +108,9 @@ const { data } = Astro.props;
           data.examples.client && (
             <div>
               <h3 class="font-bold mb-1">CLIENT</h3>
-              <pre class="bg-white border-2 border-black p-4 overflow-x-auto text-sm shadow-[2px_2px_0px_0px_#000] whitespace-pre-wrap">{data.examples.client}</pre>
+              <pre class="bg-white border-2 border-black p-4 overflow-x-auto text-sm shadow-[2px_2px_0px_0px_#000] whitespace-pre-wrap">
+                {data.examples.client}
+              </pre>
             </div>
           )
         }
@@ -197,5 +193,3 @@ const { data } = Astro.props;
     </section>
   </article>
 </main>
-<CtaBanner />
-<Footer />

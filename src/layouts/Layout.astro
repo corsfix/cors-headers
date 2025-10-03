@@ -10,6 +10,9 @@ const { title, description } = Astro.props;
 
 const canonical = new URL(Astro.site || "");
 canonical.pathname = Astro.url.pathname.replace(/\.html$/, "");
+
+// Get current path for active link highlighting
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -27,6 +30,209 @@ canonical.pathname = Astro.url.pathname.replace(/\.html$/, "");
       data-website-id="df23c0f7-68fb-415c-91e7-5262eb2722a4"></script>
   </head>
   <body class="bg-[#f7f7f7]">
-    <slot />
+    <!-- Mobile Toggle Button -->
+    <button
+      id="sidebar-toggle"
+      class="lg:hidden fixed top-4 right-4 z-50 bg-yellow-300 border-4 border-black shadow-[4px_4px_0px_0px_#000] p-2 font-bold"
+      aria-label="Toggle sidebar"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Grid Layout -->
+    <div class="grid lg:grid-cols-[256px_1fr] lg:grid-rows-[auto_1fr] h-screen">
+      <!-- Logo Header (Row 1, Col 1) -->
+      <div
+        id="logo-header"
+        class="bg-white border-b-4 border-black border-r-4 p-4 flex items-center fixed lg:sticky lg:top-0 w-64 lg:w-auto z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
+      >
+        <a href="/" class="block">
+          <div class="text-xl font-extrabold px-4 py-2 inline-block">
+            Corsfix
+          </div>
+        </a>
+      </div>
+
+      <!-- Title Header (Row 1, Col 2) -->
+      <div
+        class="bg-white border-b-4 border-black p-4 flex items-center sticky top-0 z-30"
+      >
+        <div class="text-xl font-extrabold">CORS Headers Explained</div>
+      </div>
+
+      <!-- Sidebar (Row 2, Col 1) -->
+      <aside
+        id="sidebar"
+        class="bg-white border-r-4 border-black overflow-y-auto flex flex-col fixed lg:static top-[92px] lg:top-auto bottom-0 lg:bottom-auto w-64 lg:w-auto z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:h-full"
+      >
+        <!-- Navigation Links -->
+        <nav class="flex-1 p-4 space-y-1">
+          <a
+            href="/cors-headers"
+            class:list={[
+              "block px-4 py-2 font-bold rounded transition-colors border-2",
+              currentPath === "/cors-headers" ||
+              currentPath === "/cors-headers/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            CORS Headers
+          </a>
+          <a
+            href="/cors-headers/access-control-allow-origin"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-allow-origin" ||
+              currentPath === "/cors-headers/access-control-allow-origin/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Allow-Origin
+          </a>
+          <a
+            href="/cors-headers/access-control-allow-credentials"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath ===
+                "/cors-headers/access-control-allow-credentials" ||
+              currentPath === "/cors-headers/access-control-allow-credentials/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Allow-Credentials
+          </a>
+          <a
+            href="/cors-headers/access-control-allow-headers"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-allow-headers" ||
+              currentPath === "/cors-headers/access-control-allow-headers/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Allow-Headers
+          </a>
+          <a
+            href="/cors-headers/access-control-allow-methods"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-allow-methods" ||
+              currentPath === "/cors-headers/access-control-allow-methods/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Allow-Methods
+          </a>
+          <a
+            href="/cors-headers/access-control-expose-headers"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-expose-headers" ||
+              currentPath === "/cors-headers/access-control-expose-headers/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Expose-Headers
+          </a>
+          <a
+            href="/cors-headers/access-control-max-age"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-max-age" ||
+              currentPath === "/cors-headers/access-control-max-age/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Max-Age
+          </a>
+          <a
+            href="/cors-headers/access-control-request-headers"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-request-headers" ||
+              currentPath === "/cors-headers/access-control-request-headers/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Request-Headers
+          </a>
+          <a
+            href="/cors-headers/access-control-request-method"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/access-control-request-method" ||
+              currentPath === "/cors-headers/access-control-request-method/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Access-Control-Request-Method
+          </a>
+          <a
+            href="/cors-headers/origin"
+            class:list={[
+              "block px-4 py-2 text-sm rounded transition-colors border-2",
+              currentPath === "/cors-headers/origin" ||
+              currentPath === "/cors-headers/origin/"
+                ? "bg-yellow-300 border-black"
+                : "border-transparent hover:bg-yellow-100",
+            ]}
+          >
+            Origin
+          </a>
+        </nav>
+
+        <!-- Footer -->
+        <div
+          class="p-4 border-t-4 border-black text-xs text-gray-600 space-y-1"
+        >
+          <p class="font-semibold">CORS Headers Explained by Corsfix</p>
+          <p>Content licensed under CC-BY-SA-4.0</p>
+        </div>
+      </aside>
+
+      <!-- Main Content (Row 2, Col 2) -->
+      <main class="bg-[#f7f7f7] overflow-auto">
+        <slot />
+      </main>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden lg:hidden"></div>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const logoHeader = document.getElementById("logo-header");
+      const toggle = document.getElementById("sidebar-toggle");
+      const overlay = document.getElementById("sidebar-overlay");
+
+      function toggleSidebar() {
+        sidebar?.classList.toggle("-translate-x-full");
+        logoHeader?.classList.toggle("-translate-x-full");
+        overlay?.classList.toggle("hidden");
+      }
+
+      toggle?.addEventListener("click", toggleSidebar);
+      overlay?.addEventListener("click", toggleSidebar);
+    </script>
   </body>
 </html>

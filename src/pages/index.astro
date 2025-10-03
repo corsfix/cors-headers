@@ -4,8 +4,6 @@ import Card from "../components/ui/Card.astro";
 import CardContent from "../components/ui/CardContent.astro";
 import Button from "../components/ui/Button.astro";
 import ChevronRight from "../components/icons/ChevronRight.astro";
-import CtaBanner from "../components/CtaBanner.astro";
-import Footer from "../components/Footer.astro";
 
 // Central data → add / edit headers here
 const headerCards = [
@@ -71,20 +69,20 @@ if (baseUrl.endsWith("/")) {
   title="CORS Headers Explained"
   description="All-in-one resource for understanding CORS headers, including usage, common errors and code examples."
 >
-  <main class="text-black font-sans pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+  <main class="text-black font-sans pt-10 pb-20 px-4 sm:px-6 lg:px-8">
     {/* Hero */}
-    <header class="max-w-5xl mx-auto text-center mb-20">
+    <header class="text-center">
       <h1
-        class="text-5xl sm:text-6xl font-extrabold leading-tight inline-block px-2 py-1 bg-yellow-300 border-4 border-black shadow-[6px_6px_0px_0px_#000]"
+        class="inline-block bg-yellow-300 border-4 border-black shadow-[6px_6px_0px_0px_#000] px-3 py-1 text-4xl sm:text-5xl font-extrabold"
       >
-        CORS Headers Explained
+        CORS Headers
       </h1>
-      <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl font-medium">
-        All-in-one resource for understanding CORS headers, including usage,
-        common errors and code examples. Perfect for web developers and API
-        makers.
-      </p>
     </header>
+    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl font-medium mb-10">
+      All-in-one resource for understanding CORS headers, including usage,
+      common errors and code examples. Perfect for web developers and API
+      makers.
+    </p>
 
     {/* Header Grid */}
     <section class="max-w-7xl mx-auto">
@@ -180,6 +178,4 @@ if (baseUrl.endsWith("/")) {
       </div>
     </section>
   </main>
-  <CtaBanner />
-  <Footer />
 </Layout>
