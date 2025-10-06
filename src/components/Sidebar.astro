@@ -2,6 +2,11 @@
 // Get current path for active link highlighting
 const currentPath = Astro.url.pathname;
 
+let baseUrl = import.meta.env.BASE_URL;
+if (baseUrl.endsWith("/")) {
+  baseUrl = baseUrl.slice(0, -1);
+}
+
 const navLinks = [
   { href: "/cors-headers", label: "CORS Headers" },
   {
@@ -48,7 +53,7 @@ const navLinks = [
     <a href="/" class="block p-4">
       <div class="flex justify-start items-center">
         <div class="mr-2 text-6xl">
-          <img src="/cors-headers/logo.png" alt="Corsfix" class="size-10" />
+          <img src={`${baseUrl}/logo.png`} alt="Corsfix" class="size-10" />
         </div>
         <div class="font-semibold text-lg dark:text-gray-100">Corsfix</div>
       </div>
@@ -73,7 +78,9 @@ const navLinks = [
     </nav>
   </div>
   <!-- Footer -->
-  <div class="p-4 border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400 space-y-1">
+  <div
+    class="p-4 border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400 space-y-1"
+  >
     <p>
       CORS Headers Explained by <a href="/" class="underline">Corsfix</a>
     </p>
