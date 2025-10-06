@@ -31,10 +31,25 @@ canonical.pathname = Astro.url.pathname.replace(/\.html$/, "");
   <body>
     <div class="flex">
       <Sidebar />
-      <main class="grow">
+      <main class="w-full">
         <Header />
         <slot />
       </main>
     </div>
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const logoHeader = document.getElementById("logo-header");
+      const toggle = document.getElementById("sidebar-toggle");
+      const overlay = document.getElementById("sidebar-overlay");
+
+      function toggleSidebar() {
+        sidebar?.classList.toggle("-translate-x-full");
+        logoHeader?.classList.toggle("-translate-x-full");
+        overlay?.classList.toggle("hidden");
+      }
+
+      toggle?.addEventListener("click", toggleSidebar);
+      overlay?.addEventListener("click", toggleSidebar);
+    </script>
   </body>
 </html>

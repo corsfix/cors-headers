@@ -40,13 +40,13 @@ const navLinks = [
 ];
 ---
 
-<div class="h-screen flex flex-col sticky top-0 bottom-0 z-40">
-  <aside
-    id="sidebar"
-    class="bg-[#fafafa] border-r border-gray-200 overflow-y-auto flex grow flex-col fixed lg:static top-0 bottom-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
-  >
+<div
+  id="sidebar"
+  class="bg-[#fafafa] border-r h-screen flex flex-col justify-between fixed lg:sticky top-0 bottom-0 w-80 z-40 border-gray-200 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
+>
+  <div class="grow">
     <a href="/" class="block p-4">
-      <div class="flex justify-start items-center grow basis-0">
+      <div class="flex justify-start items-center">
         <div class="mr-2 text-6xl">
           <img src="/cors-headers/logo.png" alt="Corsfix" class="size-10" />
         </div>
@@ -71,29 +71,11 @@ const navLinks = [
         ))
       }
     </nav>
-
-    <!-- Footer -->
-    <div class="p-4 border-t border-gray-200 text-xs text-gray-500 space-y-1">
-      <p class="font-medium">CORS Headers Explained by Corsfix</p>
-      <p>Content licensed under CC-BY-SA-4.0</p>
-    </div>
-  </aside>
-
-  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden lg:hidden"></div>
+  </div>
+  <!-- Footer -->
+  <div class="p-4 border-t border-gray-200 text-xs text-gray-500 space-y-1">
+    <p class="font-medium">CORS Headers Explained by Corsfix</p>
+    <p>Content licensed under CC-BY-SA-4.0</p>
+  </div>
 </div>
-
-<script>
-  const sidebar = document.getElementById("sidebar");
-  const logoHeader = document.getElementById("logo-header");
-  const toggle = document.getElementById("sidebar-toggle");
-  const overlay = document.getElementById("sidebar-overlay");
-
-  function toggleSidebar() {
-    sidebar?.classList.toggle("-translate-x-full");
-    logoHeader?.classList.toggle("-translate-x-full");
-    overlay?.classList.toggle("hidden");
-  }
-
-  toggle?.addEventListener("click", toggleSidebar);
-  overlay?.addEventListener("click", toggleSidebar);
-</script>
+<div id="sidebar-overlay" class="fixed inset-0 z-30 hidden lg:hidden"></div>
