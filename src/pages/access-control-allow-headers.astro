@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Access-Control-Allow-Headers",
@@ -67,16 +65,6 @@ fetch('https://api.example.com/data', {
       fix: "Ensure the server's response includes the required header token in the `Access-Control-Allow-Headers` value.",
     },
   ],
-  related: [
-    {
-      name: "Access-Control-Request-Headers",
-      slug: "access-control-request-headers",
-    },
-    {
-      name: "Access-Control-Allow-Methods",
-      slug: "access-control-allow-methods",
-    },
-  ],
   faq: [
     {
       q: "Is the `Access-Control-Allow-Headers` (ACAH) header needed on the actual resource response?",
@@ -91,8 +79,8 @@ fetch('https://api.example.com/data', {
 ---
 
 <Layout
-  title={`${headerData.name} header`}
+  title={`${headerData.name} | CORS Headers Explained`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

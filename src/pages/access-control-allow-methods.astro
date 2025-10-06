@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Access-Control-Allow-Methods",
@@ -68,16 +66,6 @@ fetch('https://api.example.com/data', {
       fix: "Add the method to the Access-Control-Allow-Methods header on your server.",
     },
   ],
-  related: [
-    {
-      name: "Access-Control-Request-Method",
-      slug: "access-control-request-method",
-    },
-    {
-      name: "Access-Control-Allow-Headers",
-      slug: "access-control-allow-headers",
-    },
-  ],
   faq: [
     {
       q: "Can I have multiple methods in Access-Control-Allow-Methods?",
@@ -96,8 +84,8 @@ fetch('https://api.example.com/data', {
 ---
 
 <Layout
-  title={`${headerData.name} header`}
+  title={`${headerData.name} | CORS Headers Explained`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

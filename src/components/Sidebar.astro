@@ -1,0 +1,95 @@
+---
+// Get current path for active link highlighting
+const currentPath = Astro.url.pathname;
+
+let baseUrl = import.meta.env.BASE_URL;
+if (baseUrl.endsWith("/")) {
+  baseUrl = baseUrl.slice(0, -1);
+}
+
+const navLinks = [
+  { href: "/cors-headers", label: "CORS Headers" },
+  {
+    href: "/cors-headers/access-control-allow-origin",
+    label: "Access-Control-Allow-Origin",
+  },
+  {
+    href: "/cors-headers/access-control-allow-credentials",
+    label: "Access-Control-Allow-Credentials",
+  },
+  {
+    href: "/cors-headers/access-control-allow-headers",
+    label: "Access-Control-Allow-Headers",
+  },
+  {
+    href: "/cors-headers/access-control-allow-methods",
+    label: "Access-Control-Allow-Methods",
+  },
+  {
+    href: "/cors-headers/access-control-expose-headers",
+    label: "Access-Control-Expose-Headers",
+  },
+  {
+    href: "/cors-headers/access-control-max-age",
+    label: "Access-Control-Max-Age",
+  },
+  {
+    href: "/cors-headers/access-control-request-headers",
+    label: "Access-Control-Request-Headers",
+  },
+  {
+    href: "/cors-headers/access-control-request-method",
+    label: "Access-Control-Request-Method",
+  },
+  { href: "/cors-headers/origin", label: "Origin" },
+];
+---
+
+<div
+  id="sidebar"
+  class="bg-[#fafafa] dark:bg-gray-900 border-r h-screen flex flex-col justify-between fixed lg:sticky top-0 bottom-0 w-80 z-40 border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
+>
+  <div class="grow">
+    <a href="/" class="block p-4">
+      <div class="flex justify-start items-center">
+        <div class="mr-2 text-6xl">
+          <img src={`${baseUrl}/logo.png`} alt="Corsfix" class="size-10" />
+        </div>
+        <div class="font-semibold text-lg dark:text-gray-100">Corsfix</div>
+      </div>
+    </a>
+    <!-- Navigation Links -->
+    <nav class="flex-1 p-4 space-y-0.5">
+      {
+        navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "block px-3 py-2 text-sm rounded-md transition-colors",
+              currentPath === href || currentPath === `${href}/`
+                ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100",
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+  <!-- Footer -->
+  <div
+    class="p-4 border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400 space-y-1"
+  >
+    <p>
+      CORS Headers Explained by <a href="/" class="underline">Corsfix</a>
+    </p>
+    <p>Content licensed under CC-BY-SA-4.0</p>
+    <p>
+      <a href="https://github.com/corsfix/cors-headers" class="underline"
+        >Source code.</a
+      >
+    </p>
+  </div>
+</div>
+<div id="sidebar-overlay" class="fixed inset-0 z-30 hidden lg:hidden"></div>

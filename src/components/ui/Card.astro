@@ -3,7 +3,7 @@ const { class: className, ...rest } = Astro.props;
 ---
 
 <div
-  class:list={["bg-white border-2 border-black rounded-lg", className]}
+  class:list={["bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg", className]}
   {...rest}
 >
   <slot />
