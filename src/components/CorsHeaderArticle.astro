@@ -29,7 +29,7 @@ const { data } = Astro.props;
   class="text-black font-sans px-4 sm:px-6 lg:px-8 pt-10 pb-20 max-w-6xl mx-auto"
 >
   <!-- Title block -->
-  <header class="mb-14 text-center">
+  <header class="mb-14">
     <h1
       class="inline-block bg-yellow-300 border-4 border-black shadow-[6px_6px_0px_0px_#000] px-3 py-1 text-4xl sm:text-5xl font-extrabold"
     >
@@ -40,17 +40,6 @@ const { data } = Astro.props;
   <article class="space-y-12">
     <!-- DESCRIPTION -->
     <section id="description" class="space-y-4">
-      <h2
-        class="text-3xl font-extrabold inline-block bg-pink-300 border-2 border-black shadow-[4px_4px_0px_0px_#000] px-2 py-1"
-      >
-        <a
-          href="#description"
-          class="animated-underline"
-          aria-label="Link to Description section"
-        >
-          Description
-        </a>
-      </h2>
       <p class="text-base leading-relaxed">{data.description}</p>
     </section>
 
