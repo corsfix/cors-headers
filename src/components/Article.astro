@@ -34,12 +34,10 @@ const { data } = Astro.props;
 
   <article class="space-y-10">
     <!-- DESCRIPTION -->
-    <section id="description" class="space-y-4">
-      <p class="text-base leading-relaxed text-gray-600">{data.description}</p>
-    </section>
+    <p class="text-base leading-relaxed text-gray-600">{data.description}</p>
 
     <!-- SYNTAX -->
-    <section id="syntax" class="space-y-4">
+    <section id="syntax" class="space-y-4 scroll-mt-20">
       <h2 class="text-xl font-semibold text-gray-900">
         <a
           href="#syntax"
@@ -63,7 +61,7 @@ const { data } = Astro.props;
     </section>
 
     <!-- CODE EXAMPLES -->
-    <section id="examples" class="space-y-4">
+    <section id="examples" class="space-y-4 scroll-mt-20">
       <h2 class="text-xl font-semibold text-gray-900">
         <a
           href="#examples"
@@ -100,7 +98,7 @@ const { data } = Astro.props;
     <!-- ERRORS -->
     {
       data.errors.length > 0 && (
-        <section id="errors" class="space-y-4">
+        <section id="errors" class="space-y-4 scroll-mt-20">
           <h2 class="text-xl font-semibold text-gray-900">
             <a
               href="#errors"
@@ -121,7 +119,7 @@ const { data } = Astro.props;
     }
 
     <!-- FAQ -->
-    <section id="faq" class="space-y-4">
+    <section id="faq" class="space-y-4 scroll-mt-20">
       <h2 class="text-xl font-semibold text-gray-900">
         <a
           href="#faq"
