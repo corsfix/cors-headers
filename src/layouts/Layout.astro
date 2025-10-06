@@ -2,6 +2,7 @@
 import "../styles/global.css"; // Corrected path
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import Themes from "astro-themes";
 
 export interface Props {
   title: string;
@@ -23,12 +24,13 @@ canonical.pathname = Astro.url.pathname.replace(/\.html$/, "");
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="canonical" href={canonical.toString()} />
+    <Themes />
     <script
       defer
       src="https://cloud.umami.is/script.js"
       data-website-id="df23c0f7-68fb-415c-91e7-5262eb2722a4"></script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-gray-900">
     <div class="flex">
       <Sidebar />
       <main class="w-full">

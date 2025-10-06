@@ -69,16 +69,16 @@ if (baseUrl.endsWith("/")) {
   title="CORS Headers Explained"
   description="All-in-one resource for understanding CORS headers, including usage, common errors and code examples."
 >
-  <main class="text-gray-900 font-sans pt-10 pb-20 px-4 sm:px-6 lg:px-8">
+  <main class="text-gray-900 dark:text-gray-100 font-sans pt-10 pb-20 px-4 sm:px-6 lg:px-8">
     {/* Hero */}
     <header class="text-center">
       <h1
-        class="text-3xl sm:text-4xl font-semibold text-gray-900"
+        class="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-gray-100"
       >
         CORS Headers
       </h1>
     </header>
-    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 mb-12">
+    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-12">
       All-in-one resource for understanding CORS headers, including usage,
       common errors and code examples. Perfect for web developers and API
       makers.
@@ -90,11 +90,11 @@ if (baseUrl.endsWith("/")) {
         {
           headerCards.map(({ name, slug, blurb }, i) => (
             <a href={`${baseUrl}/${slug}`} class="group">
-              <Card class="h-full hover:border-gray-300 transition-all duration-200">
+              <Card class="h-full hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
                 <CardContent>
-                  <h3 class="text-lg font-medium text-gray-900 group-hover:text-gray-600 transition-colors">{name}</h3>
-                  <p class="text-sm leading-relaxed text-gray-600">{blurb}</p>
-                  <div class="flex items-center pt-2 text-gray-500 group-hover:text-gray-900 transition-colors">
+                  <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">{name}</h3>
+                  <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{blurb}</p>
+                  <div class="flex items-center pt-2 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
                     <span class="mr-1 text-sm">Read more</span>
                     <ChevronRight />
                   </div>
@@ -109,15 +109,15 @@ if (baseUrl.endsWith("/")) {
     {/* Usage Scenarios */}
     <section class="max-w-5xl mx-auto mt-24 space-y-8">
       <h2
-        class="text-2xl font-semibold text-gray-900"
+        class="text-2xl font-semibold text-gray-900 dark:text-gray-100"
       >
         When do these headers matter?
       </h2>
       <div class="grid gap-6 md:grid-cols-2">
         <Card>
           <CardContent class="space-y-2">
-            <h3 class="font-medium text-gray-900">For Web Developers</h3>
-            <p class="text-sm leading-relaxed text-gray-600">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">For Web Developers</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               Understand CORS to troubleshoot and fix issues when your frontend
               application interacts with APIs on different origins.
             </p>
@@ -125,8 +125,8 @@ if (baseUrl.endsWith("/")) {
         </Card>
         <Card>
           <CardContent class="space-y-2">
-            <h3 class="font-medium text-gray-900">For API Makers</h3>
-            <p class="text-sm leading-relaxed text-gray-600">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">For API Makers</h3>
+            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               Learn how to configure CORS headers to securely enable client-side
               access to your API from various origins.
             </p>
@@ -138,16 +138,16 @@ if (baseUrl.endsWith("/")) {
     {/* Tools */}
     <section class="max-w-7xl mx-auto mt-32 space-y-8">
       <h2
-        class="text-2xl font-semibold text-gray-900"
+        class="text-2xl font-semibold text-gray-900 dark:text-gray-100"
       >
         Explore More Tools
       </h2>
       <div class="grid gap-6 lg:grid-cols-2">
         <div
-          class="bg-white border border-gray-200 rounded-lg p-8 space-y-4"
+          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 space-y-4"
         >
-          <h3 class="text-xl font-semibold text-gray-900">CORS Tester</h3>
-          <p class="max-w-md text-base leading-relaxed text-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">CORS Tester</h3>
+          <p class="max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-400">
             Paste any API endpoint and instantly see if it supports CORS and
             which headers it returns.
           </p>
@@ -160,10 +160,10 @@ if (baseUrl.endsWith("/")) {
           </Button>
         </div>
         <div
-          class="bg-white border border-gray-200 rounded-lg p-8 space-y-4"
+          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 space-y-4"
         >
-          <h3 class="text-xl font-semibold text-gray-900">CORS Proxy Playground</h3>
-          <p class="max-w-md text-base leading-relaxed text-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">CORS Proxy Playground</h3>
+          <p class="max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-400">
             Bypass CORS errors in your web app by routing your requests through
             our CORS proxy.
           </p>

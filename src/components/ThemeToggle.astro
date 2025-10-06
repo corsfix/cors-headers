@@ -1,0 +1,92 @@
+---
+import Monitor from "./icons/Monitor.astro";
+import Moon from "./icons/Moon.astro";
+import Sun from "./icons/Sun.astro";
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="text-gray-600 dark:text-gray-400 transition-colors cursor-pointer"
+  aria-label="Toggle theme"
+>
+  <span id="theme-icon-light" class="hidden">
+    <Sun />
+  </span>
+  <span id="theme-icon-dark" class="hidden">
+    <Moon />
+  </span>
+  <span id="theme-icon-system" class="hidden">
+    <Monitor />
+  </span>
+</button>
+
+<script>
+  function updateThemeIcon() {
+    const preference =
+      document.documentElement.attributes.getNamedItem("data-theme-preference")
+        ?.value || "system";
+    const lightIcon = document.getElementById("theme-icon-light");
+    const darkIcon = document.getElementById("theme-icon-dark");
+    const systemIcon = document.getElementById("theme-icon-system");
+
+    // Hide all icons first
+    lightIcon?.classList.add("hidden");
+    darkIcon?.classList.add("hidden");
+    systemIcon?.classList.add("hidden");
+
+    // Show the appropriate icon based on preference
+    if (preference === "light") {
+      lightIcon?.classList.remove("hidden");
+    } else if (preference === "dark") {
+      darkIcon?.classList.remove("hidden");
+    } else {
+      systemIcon?.classList.remove("hidden");
+    }
+  }
+
+  function cycleTheme() {
+    const preference =
+      document.documentElement.attributes.getNamedItem("data-theme-preference")
+        ?.value || "system";
+
+    // Cycle through: system -> light -> dark -> system
+    let newTheme: "light" | "dark" | null;
+    if (preference === "" || preference === "system") {
+      newTheme = "light";
+    } else if (preference === "light") {
+      newTheme = "dark";
+    } else {
+      newTheme = null; // system
+    }
+
+    document.dispatchEvent(new CustomEvent("set-theme", { detail: newTheme }));
+    updateThemeIcon();
+  }
+
+  function setupThemeToggle() {
+    const toggle = document.getElementById("theme-toggle");
+
+    // Cycle theme on click
+    toggle?.addEventListener("click", cycleTheme);
+
+    // Update icon on initial load
+    updateThemeIcon();
+
+    // Update icon when theme changes
+    const observer = new MutationObserver(() => {
+      updateThemeIcon();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme", "data-theme-preference"],
+    });
+  }
+
+  // Run on initial page load
+  setupThemeToggle();
+
+  // Re-run after page navigation (for Astro view transitions)
+  document.addEventListener("astro:after-swap", setupThemeToggle);
+</script>

@@ -42,7 +42,7 @@ const navLinks = [
 
 <div
   id="sidebar"
-  class="bg-[#fafafa] border-r h-screen flex flex-col justify-between fixed lg:sticky top-0 bottom-0 w-80 z-40 border-gray-200 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
+  class="bg-[#fafafa] dark:bg-gray-900 border-r h-screen flex flex-col justify-between fixed lg:sticky top-0 bottom-0 w-80 z-40 border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out"
 >
   <div class="grow">
     <a href="/" class="block p-4">
@@ -50,7 +50,7 @@ const navLinks = [
         <div class="mr-2 text-6xl">
           <img src="/cors-headers/logo.png" alt="Corsfix" class="size-10" />
         </div>
-        <div class="font-semibold text-lg">Corsfix</div>
+        <div class="font-semibold text-lg dark:text-gray-100">Corsfix</div>
       </div>
     </a>
     <!-- Navigation Links -->
@@ -62,8 +62,8 @@ const navLinks = [
             class:list={[
               "block px-3 py-2 text-sm rounded-md transition-colors",
               currentPath === href || currentPath === `${href}/`
-                ? "bg-gray-100 text-gray-900"
-                : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100",
             ]}
           >
             {label}
@@ -73,7 +73,7 @@ const navLinks = [
     </nav>
   </div>
   <!-- Footer -->
-  <div class="p-4 border-gray-200 text-xs text-gray-500 space-y-1">
+  <div class="p-4 border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400 space-y-1">
     <p>
       CORS Headers Explained by <a href="/" class="underline">Corsfix</a>
     </p>
