@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Origin",
@@ -62,12 +60,6 @@ app.listen(port, () => {
       fix: "Ensure your server validates the Origin header against an allowlist of trusted domains. Set Access-Control-Allow-Origin to the specific origin or configure your CORS middleware correctly.",
     },
   ],
-  related: [
-    {
-      name: "Access-Control-Allow-Origin",
-      slug: "access-control-allow-origin",
-    },
-  ],
   faq: [
     {
       q: "Do I need to set the Origin header manually?",
@@ -85,5 +77,5 @@ app.listen(port, () => {
   title={`${headerData.name} header`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

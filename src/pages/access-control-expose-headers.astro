@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Access-Control-Expose-Headers",
@@ -76,12 +74,6 @@ fetch('https://api.example.com/users', {
       fix: "Expose the header X by adding its name to the Access-Control-Expose-Headers response header from the server. For example: `Access-Control-Expose-Headers: X`.",
     },
   ],
-  related: [
-    {
-      name: "Access-Control-Allow-Origin",
-      slug: "access-control-allow-origin",
-    },
-  ],
   faq: [
     {
       q: "Can I expose all headers?",
@@ -103,5 +95,5 @@ fetch('https://api.example.com/users', {
   title={`${headerData.name} header`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

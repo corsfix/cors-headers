@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Access-Control-Max-Age",
@@ -43,20 +41,6 @@ app.listen(port, () => {
       fix: "Ensure the header is sent in OPTIONS responses, not actual requests. Check that your value doesn't exceed browser limits (7200 for Chrome, 86400 for Firefox). Verify identical requests are being made and check the Network tab to confirm the header is present in OPTIONS responses.",
     },
   ],
-  related: [
-    {
-      name: "Access-Control-Allow-Origin",
-      slug: "access-control-allow-origin",
-    },
-    {
-      name: "Access-Control-Allow-Methods",
-      slug: "access-control-allow-methods",
-    },
-    {
-      name: "Access-Control-Allow-Headers",
-      slug: "access-control-allow-headers",
-    },
-  ],
   faq: [
     {
       q: "What is the maximum value I can have for Access-Control-Max-Age?",
@@ -70,5 +54,5 @@ app.listen(port, () => {
   title={`${headerData.name} header`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

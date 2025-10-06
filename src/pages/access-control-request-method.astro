@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CorsHeaderArticle, {
-  type HeaderData,
-} from "../components/CorsHeaderArticle.astro";
+import Article, { type HeaderData } from "../components/Article.astro";
 
 const headerData: HeaderData = {
   name: "Access-Control-Request-Method",
@@ -23,16 +21,6 @@ fetch('https://api.example.com/data', {
 // Access-Control-Request-Method: PUT`,
   },
   errors: [],
-  related: [
-    {
-      name: "Access-Control-Allow-Methods",
-      slug: "access-control-allow-methods",
-    },
-    {
-      name: "Access-Control-Request-Headers",
-      slug: "access-control-request-headers",
-    },
-  ],
   faq: [
     {
       q: "Do I need to set this header manually?",
@@ -50,5 +38,5 @@ fetch('https://api.example.com/data', {
   title={`${headerData.name} header`}
   description={headerData.description}
 >
-  <CorsHeaderArticle data={headerData} />
+  <Article data={headerData} />
 </Layout>

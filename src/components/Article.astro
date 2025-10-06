@@ -9,7 +9,6 @@ export interface HeaderData {
     server?: string;
   };
   errors: Array<{ msg: string; fix: string }>;
-  related: Array<{ name: string; slug: string }>;
   faq: Array<{ q: string; a: string }>;
 }
 
@@ -120,33 +119,6 @@ const { data } = Astro.props;
         </section>
       )
     }
-
-    <!-- RELATED HEADERS -->
-    <section id="related" class="space-y-4">
-      <h2 class="text-xl font-semibold text-gray-900">
-        <a
-          href="#related"
-          class="hover:text-gray-600 transition-colors"
-          aria-label="Link to Related headers section"
-        >
-          Related headers
-        </a>
-      </h2>
-      <ul class="space-y-2">
-        {
-          data.related.map(({ name, slug }) => (
-            <li>
-              <a
-                href={`${baseUrl}/${slug}`}
-                class="text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                {name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
 
     <!-- FAQ -->
     <section id="faq" class="space-y-4">
