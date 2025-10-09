@@ -5,8 +5,8 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Allow-Headers",
   slug: "access-control-allow-headers",
-  description:
-    "The Access-Control-Allow-Headers (ACAH) header specifies which headers can be used in the actual cross-origin request. This header is part of the preflight request mechanism. When you send a cross-origin request with non-safelisted headers, the browser will make a preflight request to see if the actual request can be sent. To allow the request, the server must respond with the appropriate `Access-Control-Allow-Headers` containing the allowed headers.",
+  description: `The Access-Control-Allow-Headers header specifies which HTTP headers can be used in the actual cross-origin request.<br/><br/>
+When a cross-origin request includes non-safelisted headers, the browser sends a preflight request to check if those headers are allowed. The server must respond with this header listing the permitted headers for the actual request to proceed.`,
   syntax: {
     code: `Access-Control-Allow-Headers: <header>
 Access-Control-Allow-Headers: <header>, <header>, ...

@@ -5,8 +5,8 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Allow-Origin",
   slug: "access-control-allow-origin",
-  description:
-    "Browsers by default enforce the Same-Origin Policy, which controls how webpages interact with each other. This includes preventing a website from communicating with resources from a different origin. The Access-Control-Allow-Origin header relaxes this policy by specifying which origins have access to its content. Without this header, browsers will not be able to read the response from the other origin.",
+  description: `The Access-Control-Allow-Origin header specifies which origins are allowed to access a resource from a different domain.<br/><br/>
+  Browsers enforce the Same-Origin Policy by default, preventing websites from accessing resources from different origins. This header relaxes that restriction by explicitly listing which origins can read the response. Without it, cross-origin requests will be blocked by the browser.`,
   syntax: {
     code: `Access-Control-Allow-Origin: <origin>
 Access-Control-Allow-Origin: *

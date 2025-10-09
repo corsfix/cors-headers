@@ -5,28 +5,32 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Allow-Methods",
   slug: "access-control-allow-methods",
-  description:
-    "The Access-Control-Allow-Methods header specifies which HTTP methods are allowed when accessing a resource during a CORS preflight request. This is part of preflight request process. When making HTTP request with non-simple method (other than GET/POST/HEAD) browser will trigger a preflight mechanism to check whether the request is allowed. The server must return the Access-Control-Allow-Methods header alongside with ACAO to indicate that the method is allowed.",
+  description: `The Access-Control-Allow-Methods header specifies which HTTP methods are allowed for cross-origin requests to a resource.<br/><br/>
+When a cross-origin request uses a non-simple method (other than GET, POST, or HEAD), the browser sends a preflight request to check if the method is allowed. The server must respond with this header listing the permitted methods for the actual request to proceed.`,
   syntax: {
     code: `Access-Control-Allow-Methods: <method>
 Access-Control-Allow-Methods: <method>, <method>, ...
 Access-Control-Allow-Methods: *`,
-    description: "The Access-Control-Allow-Methods header accepts one or more HTTP methods (e.g., `GET` or `GET, POST, PUT, DELETE`) to specify which methods are allowed for the cross-origin request. Additionally, the wildcard `*` can be used to allow all methods.",
+    description:
+      "The Access-Control-Allow-Methods header accepts one or more HTTP methods (e.g., `GET` or `GET, POST, PUT, DELETE`) to specify which methods are allowed for the cross-origin request. Additionally, the wildcard `*` can be used to allow all methods.",
   },
   examples: [
     {
       title: "Allowing a single method",
-      description: "Permits only `GET` requests for this cross-origin resource.",
+      description:
+        "Permits only `GET` requests for this cross-origin resource.",
       code: `Access-Control-Allow-Methods: GET`,
     },
     {
       title: "Allowing multiple methods",
-      description: "Permits multiple HTTP methods such as `GET`, `POST`, `PUT`, and `DELETE`. Methods are comma-separated.",
+      description:
+        "Permits multiple HTTP methods such as `GET`, `POST`, `PUT`, and `DELETE`. Methods are comma-separated.",
       code: `Access-Control-Allow-Methods: GET, POST, PUT, DELETE`,
     },
     {
       title: "Allowing all methods",
-      description: "Permits any HTTP method to be used for this cross-origin resource.",
+      description:
+        "Permits any HTTP method to be used for this cross-origin resource.",
       code: `Access-Control-Allow-Methods: *`,
     },
   ],

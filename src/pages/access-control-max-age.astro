@@ -5,21 +5,24 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Max-Age",
   slug: "access-control-max-age",
-  description:
-    "The `Access-Control-Max-Age` header tells browsers how long they can cache the results of a CORS preflight request. The header is part of the preflight request response and controls how long the browser can cache the preflight result (the information about which methods and headers are allowed for a specific resource). Caching the preflight response is crucial for performance, as it reduces the number of preflight requests that need to be made. Normally, every CORS request would require a preflight, but with this header, subsequent identical CORS requests can skip the preflight check for the duration specified, thereby reducing latency.",
+  description: `The Access-Control-Max-Age header specifies how long (in seconds) the browser can cache the results of a CORS preflight request.<br/><br/>
+Caching preflight responses improves performance by allowing subsequent identical cross-origin requests to skip the preflight check for the specified duration, reducing latency and server load.`,
   syntax: {
     code: `Access-Control-Max-Age: <seconds>`,
-    description: "The Access-Control-Max-Age header accepts a numeric value representing the number of seconds (e.g., `86400` for one day) that the preflight response can be cached by the browser. This reduces the number of preflight requests for subsequent identical CORS requests during the specified time period.",
+    description:
+      "The Access-Control-Max-Age header accepts a numeric value representing the number of seconds (e.g., `86400` for one day) that the preflight response can be cached by the browser. This reduces the number of preflight requests for subsequent identical CORS requests during the specified time period.",
   },
   examples: [
     {
       title: "Caching preflight for 1 hour",
-      description: "The browser can cache the preflight response for 3600 seconds (1 hour), reducing the number of preflight requests.",
+      description:
+        "The browser can cache the preflight response for 3600 seconds (1 hour), reducing the number of preflight requests.",
       code: `Access-Control-Max-Age: 3600`,
     },
     {
       title: "Caching preflight for 1 day",
-      description: "The browser can cache the preflight response for 86400 seconds (1 day), significantly improving performance for frequently accessed resources.",
+      description:
+        "The browser can cache the preflight response for 86400 seconds (1 day), significantly improving performance for frequently accessed resources.",
       code: `Access-Control-Max-Age: 86400`,
     },
   ],

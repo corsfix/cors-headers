@@ -5,16 +5,18 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Request-Headers",
   slug: "access-control-request-headers",
-  description:
-    "The Access-Control-Request-Headers header is automatically sent by the browser during preflight requests. Lists the headers that will be included in the actual request, allowing the server to approve or deny them.",
+  description: `The Access-Control-Request-Headers header is automatically sent by the browser during CORS preflight requests to indicate which headers will be included in the actual request.<br/><br/>
+This allows the server to approve or deny the use of those headers before the actual cross-origin request is made.`,
   syntax: {
     code: `Access-Control-Request-Headers: <header>, <header>, ...`,
-    description: "The Access-Control-Request-Headers header is automatically set by the browser during preflight requests. It contains a comma-separated list of header names (e.g., `content-type, x-custom-header`) that will be included in the actual cross-origin request.",
+    description:
+      "The Access-Control-Request-Headers header is automatically set by the browser during preflight requests. It contains a comma-separated list of header names (e.g., `content-type, x-custom-header`) that will be included in the actual cross-origin request.",
   },
   examples: [
     {
       title: "Preflight with custom headers",
-      description: "When a request includes custom headers like `X-Custom-Header` and `X-API-Key`, the browser automatically sends this header in the preflight request to inform the server which headers will be used.",
+      description:
+        "When a request includes custom headers like `X-Custom-Header` and `X-API-Key`, the browser automatically sends this header in the preflight request to inform the server which headers will be used.",
       code: `Access-Control-Request-Headers: x-custom-header, x-api-key`,
     },
   ],

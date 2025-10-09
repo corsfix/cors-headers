@@ -5,21 +5,24 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Request-Method",
   slug: "access-control-request-method",
-  description:
-    "The Access-Control-Request-Method header is automatically sent by the browser during preflight requests. It tells the server which HTTP method will be used for the actual request, allowing the server to approve or deny it.",
+  description: `The Access-Control-Request-Method header is automatically sent by the browser during CORS preflight requests to indicate which HTTP method will be used in the actual request.<br/><br/>
+This allows the server to approve or deny the use of that method before the actual cross-origin request is made.`,
   syntax: {
     code: `Access-Control-Request-Method: <method>`,
-    description: "The Access-Control-Request-Method header is automatically set by the browser during preflight requests. It contains the HTTP method (e.g., `PUT` or `DELETE`) that will be used in the actual cross-origin request.",
+    description:
+      "The Access-Control-Request-Method header is automatically set by the browser during preflight requests. It contains the HTTP method (e.g., `PUT` or `DELETE`) that will be used in the actual cross-origin request.",
   },
   examples: [
     {
       title: "Preflight for PUT request",
-      description: "When a request uses the `PUT` method, the browser automatically sends this header in the preflight request to inform the server which method will be used.",
+      description:
+        "When a request uses the `PUT` method, the browser automatically sends this header in the preflight request to inform the server which method will be used.",
       code: `Access-Control-Request-Method: PUT`,
     },
     {
       title: "Preflight for DELETE request",
-      description: "When a request uses the `DELETE` method, the browser automatically sends this header in the preflight request.",
+      description:
+        "When a request uses the `DELETE` method, the browser automatically sends this header in the preflight request.",
       code: `Access-Control-Request-Method: DELETE`,
     },
   ],

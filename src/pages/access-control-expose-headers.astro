@@ -5,28 +5,32 @@ import Article, { type HeaderData } from "../components/Article.astro";
 const headerData: HeaderData = {
   name: "Access-Control-Expose-Headers",
   slug: "access-control-expose-headers",
-  description:
-    "The Access-Control-Expose-Headers header specifies which response headers can be accessed by client-side JavaScript in cross-origin requests. In cross-origin requests, by default, browsers only expose certain headers to client JavaScript, which are CORS-safelisted headers. In order for client JavaScript to read other headers, they must be explicitly set via the Access-Control-Expose-Headers (ACEH) header. This header lets client JS read **non-safelisted response headers**.",
+  description: `The Access-Control-Expose-Headers header specifies which response headers can be accessed by client-side JavaScript in cross-origin requests.<br/><br/>
+By default, browsers only expose CORS-safelisted response headers to JavaScript. To allow access to other headers, they must be explicitly listed in this header.`,
   syntax: {
     code: `Access-Control-Expose-Headers: <header>
 Access-Control-Expose-Headers: <header>, <header>, ...
 Access-Control-Expose-Headers: *`,
-    description: "The Access-Control-Expose-Headers header accepts one or more response header names (e.g., `X-Total-Count` or `X-Total-Count, X-RateLimit-Remaining`) to specify which headers can be accessed by client-side JavaScript. Additionally, the wildcard `*` can be used to expose all non-safelisted headers.",
+    description:
+      "The Access-Control-Expose-Headers header accepts one or more response header names (e.g., `X-Total-Count` or `X-Total-Count, X-RateLimit-Remaining`) to specify which headers can be accessed by client-side JavaScript. Additionally, the wildcard `*` can be used to expose all non-safelisted headers.",
   },
   examples: [
     {
       title: "Exposing a single custom header",
-      description: "Makes the `X-Total-Count` response header accessible to client-side JavaScript.",
+      description:
+        "Makes the `X-Total-Count` response header accessible to client-side JavaScript.",
       code: `Access-Control-Expose-Headers: X-Total-Count`,
     },
     {
       title: "Exposing multiple headers",
-      description: "Makes multiple custom headers like `X-Total-Count` and `X-RateLimit-Remaining` accessible to client-side JavaScript. Headers are comma-separated.",
+      description:
+        "Makes multiple custom headers like `X-Total-Count` and `X-RateLimit-Remaining` accessible to client-side JavaScript. Headers are comma-separated.",
       code: `Access-Control-Expose-Headers: X-Total-Count, X-RateLimit-Remaining`,
     },
     {
       title: "Exposing all non-safelisted headers",
-      description: "Makes all non-safelisted response headers accessible to client-side JavaScript.",
+      description:
+        "Makes all non-safelisted response headers accessible to client-side JavaScript.",
       code: `Access-Control-Expose-Headers: *`,
     },
   ],
