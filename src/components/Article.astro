@@ -1,4 +1,6 @@
 ---
+import { marked } from "marked";
+
 export interface HeaderData {
   name: string;
   slug: string;
@@ -36,9 +38,10 @@ const { data } = Astro.props;
 
   <article class="space-y-10">
     <!-- DESCRIPTION -->
-    <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-      {data.description}
-    </p>
+    <p
+      class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+      set:html={marked.parseInline(data.description)}
+    />
 
     <!-- SYNTAX -->
     <section id="syntax" class="space-y-4 scroll-mt-20">
@@ -113,12 +116,14 @@ const { data } = Astro.props;
           </h2>
           {data.errors.map(({ msg, fix }) => (
             <div class="space-y-2">
-              <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {msg}
-              </h3>
-              <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                {fix}
-              </p>
+              <h3
+                class="text-lg font-medium text-gray-900 dark:text-gray-100"
+                set:html={marked.parseInline(msg)}
+              />
+              <p
+                class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+                set:html={marked.parseInline(fix)}
+              />
             </div>
           ))}
         </section>
@@ -139,12 +144,14 @@ const { data } = Astro.props;
       {
         data.faq.map(({ q, a }) => (
           <div class="space-y-2">
-            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-              {q}
-            </h3>
-            <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-              {a}
-            </p>
+            <h3
+              class="text-lg font-medium text-gray-900 dark:text-gray-100"
+              set:html={marked.parseInline(q)}
+            />
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+              set:html={marked.parseInline(a)}
+            />
           </div>
         ))
       }
