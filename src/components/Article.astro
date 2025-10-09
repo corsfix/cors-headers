@@ -80,7 +80,7 @@ const { data } = Astro.props;
               <pre
                 class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 overflow-x-auto text-sm font-mono text-gray-800 dark:text-gray-200 whitespace-pre-wrap"
                 set:text={data.examples.server}
-              ></pre>
+              />
             </div>
           )
         }
@@ -93,7 +93,7 @@ const { data } = Astro.props;
               <pre
                 class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 overflow-x-auto text-sm font-mono text-gray-800 dark:text-gray-200 whitespace-pre-wrap"
                 set:text={data.examples.client}
-              ></pre>
+              />
             </div>
           )
         }
@@ -114,11 +114,11 @@ const { data } = Astro.props;
             </a>
           </h2>
           {data.errors.map(({ msg, fix }) => (
-            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
-              <h3 class="text-base font-medium text-gray-900 dark:text-gray-100 mb-2">
+            <div class="space-y-2">
+              <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
                 {msg}
               </h3>
-              <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
                 {fix}
               </p>
             </div>
