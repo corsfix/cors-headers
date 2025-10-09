@@ -7,11 +7,9 @@ const headerData: HeaderData = {
   slug: "access-control-allow-methods",
   description:
     "The Access-Control-Allow-Methods header specifies which HTTP methods are allowed when accessing a resource during a CORS preflight request. This is part of preflight request process. When making HTTP request with non-simple method (other than GET/POST/HEAD) browser will trigger a preflight mechanism to check whether the request is allowed. The server must return the Access-Control-Allow-Methods header alongside with ACAO to indicate that the method is allowed.",
-  syntax: [
-    "Access-Control-Allow-Methods: GET, POST, PUT, DELETE",
-    "Access-Control-Allow-Methods: *",
-    "Access-Control-Allow-Methods: PUT",
-  ],
+  syntax: `Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Methods: *
+Access-Control-Allow-Methods: PUT`,
   examples: {
     server: `// Express.js (Node.js) example (server-side)
 const express = require('express');

@@ -7,7 +7,7 @@ const headerData: HeaderData = {
   slug: "access-control-request-method",
   description:
     "The Access-Control-Request-Method header is automatically sent by the browser during preflight requests. It tells the server which HTTP method will be used for the actual request, allowing the server to approve or deny it.",
-  syntax: ["Access-Control-Request-Method: <method>"],
+  syntax: `Access-Control-Request-Method: <method>`,
   examples: {
     client: `// When you make a request with a non-simple method:
 fetch('https://api.example.com/data', {

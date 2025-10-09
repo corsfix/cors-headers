@@ -7,11 +7,9 @@ const headerData: HeaderData = {
   slug: "origin",
   description:
     "The Origin header indicates the origin (scheme, hostname, and port) that initiated the request. Browsers automatically set this header on cross-origin requests and same-origin POST, PUT, DELETE requests. Servers use this header to validate requests and set appropriate CORS headers.",
-  syntax: [
-    "Origin: https://example.com",
-    "Origin: https://example.com:3000",
-    "Origin: null",
-  ],
+  syntax: `Origin: https://example.com
+Origin: https://example.com:3000
+Origin: null`,
   examples: {
     client: `// Browser automatically sets Origin header on cross-origin requests
 fetch('https://api.example.com/data', {

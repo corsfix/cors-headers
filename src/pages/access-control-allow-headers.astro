@@ -7,10 +7,8 @@ const headerData: HeaderData = {
   slug: "access-control-allow-headers",
   description:
     "The Access-Control-Allow-Headers (ACAH) header specifies which headers can be used in the actual cross-origin request. This header is part of the preflight request mechanism. When you send a cross-origin request with non-safelisted headers, the browser will make a preflight request to see if the actual request can be sent. To allow the request, the server must respond with the appropriate `Access-Control-Allow-Headers` containing the allowed headers.",
-  syntax: [
-    "Access-Control-Allow-Headers: X-API-Key, X-Trace-Id",
-    "Access-Control-Allow-Headers: Content-Type",
-  ],
+  syntax: `Access-Control-Allow-Headers: X-API-Key, X-Trace-Id
+Access-Control-Allow-Headers: Content-Type`,
   examples: {
     server: `// Express.js (Node.js) example (server-side)
 const express = require('express');
