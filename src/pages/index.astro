@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/ui/Card.astro";
 import CardContent from "../components/ui/CardContent.astro";
-import Button from "../components/ui/Button.astro";
 import ChevronRight from "../components/icons/ChevronRight.astro";
 
 // Central data → add / edit headers here
@@ -69,113 +68,165 @@ if (baseUrl.endsWith("/")) {
   title="CORS Headers Explained"
   description="All-in-one resource for understanding CORS headers, including usage, common errors and code examples."
 >
-  <main class="text-gray-900 dark:text-gray-100 font-sans pt-10 pb-20 px-4 sm:px-6 lg:px-8">
-    {/* Hero */}
-    <header class="text-center">
-      <h1
-        class="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-gray-100"
-      >
+  <main
+    class="text-gray-900 dark:text-gray-100 font-sans px-4 sm:px-6 pt-10 pb-20 max-w-5xl mx-auto"
+  >
+    {/* Title block */}
+    <header class="mb-10">
+      <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-100">
         CORS Headers
       </h1>
     </header>
-    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-12">
-      All-in-one resource for understanding CORS headers, including usage,
-      common errors and code examples. Perfect for web developers and API
-      makers.
-    </p>
 
-    {/* Header Grid */}
-    <section class="max-w-7xl mx-auto">
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-          headerCards.map(({ name, slug, blurb }, i) => (
-            <a href={`${baseUrl}/${slug}`} class="group">
-              <Card class="h-full hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
-                <CardContent>
-                  <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">{name}</h3>
-                  <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{blurb}</p>
-                  <div class="flex items-center pt-2 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
-                    <span class="mr-1 text-sm">Read more</span>
-                    <ChevronRight />
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          ))
-        }
+    <article class="space-y-10">
+      {/* DESCRIPTION */}
+      <div class="space-y-4">
+        <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          CORS (Cross-Origin Resource Sharing) headers are HTTP headers that
+          control how web browsers handle requests between different origins.
+          When your frontend application makes a request to an API on a
+          different domain, these headers determine whether the browser allows
+          the response to be read.
+        </p>
+        <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          This resource provides comprehensive documentation for all
+          CORS-related headers, including syntax, practical examples, common
+          errors, and solutions. Whether you're troubleshooting a CORS error or
+          implementing secure cross-origin access, you'll find the information
+          you need here.
+        </p>
       </div>
-    </section>
 
-    {/* Usage Scenarios */}
-    <section class="max-w-5xl mx-auto mt-24 space-y-8">
-      <h2
-        class="text-2xl font-semibold text-gray-900 dark:text-gray-100"
-      >
-        When do these headers matter?
-      </h2>
-      <div class="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardContent class="space-y-2">
-            <h3 class="font-medium text-gray-900 dark:text-gray-100">For Web Developers</h3>
-            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-              Understand CORS to troubleshoot and fix issues when your frontend
-              application interacts with APIs on different origins.
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent class="space-y-2">
-            <h3 class="font-medium text-gray-900 dark:text-gray-100">For API Makers</h3>
-            <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-              Learn how to configure CORS headers to securely enable client-side
-              access to your API from various origins.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-
-    {/* Tools */}
-    <section class="max-w-7xl mx-auto mt-32 space-y-8">
-      <h2
-        class="text-2xl font-semibold text-gray-900 dark:text-gray-100"
-      >
-        Explore More Tools
-      </h2>
-      <div class="grid gap-6 lg:grid-cols-2">
-        <div
-          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 space-y-4"
-        >
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">CORS Tester</h3>
-          <p class="max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Paste any API endpoint and instantly see if it supports CORS and
-            which headers it returns.
-          </p>
-          <Button
-            href="https://corsfix.com/tools/cors-tester"
-            variant="default"
-            target="_blank"
+      {/* LIST OF ALL CORS HEADERS */}
+      <section id="headers" class="space-y-8 scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          <a
+            href="#headers"
+            class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+            aria-label="Link to All CORS Headers section"
           >
-            Try the tester
-          </Button>
+            All CORS Headers
+          </a>
+        </h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          {
+            headerCards.map(({ name, slug, blurb }) => (
+              <a href={`${baseUrl}/${slug}`} class="group">
+                <Card class="h-full hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+                  <CardContent>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">
+                      {name}
+                    </h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                      {blurb}
+                    </p>
+                    <div class="flex items-center pt-2 text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
+                      <span class="mr-1 text-sm">Read more</span>
+                      <ChevronRight />
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            ))
+          }
         </div>
-        <div
-          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 space-y-4"
-        >
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">CORS Proxy Playground</h3>
-          <p class="max-w-md text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Bypass CORS errors in your web app by routing your requests through
-            our CORS proxy.
-          </p>
-          <Button
-            href="https://app.corsfix.com/playground"
-            variant="secondary"
-            target="_blank"
+      </section>
+
+      {/* WHEN DO YOU NEED THIS RESOURCE */}
+      <section id="use-cases" class="space-y-8 scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          <a
+            href="#use-cases"
+            class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+            aria-label="Link to When do you need this resource section"
           >
-            Open playground
-          </Button>
+            When Do You Need This Resource
+          </a>
+        </h2>
+
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+              For Web Developers
+            </h3>
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Use this resource when your frontend application needs to interact
+              with APIs on different origins. You'll find detailed explanations
+              of CORS errors, step-by-step solutions, and code examples to help
+              you troubleshoot and fix cross-origin issues quickly.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+              For API Makers
+            </h3>
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Learn how to configure CORS headers correctly to enable secure
+              client-side access to your API. Understand which headers to use
+              for different scenarios, from public APIs to authenticated
+              endpoints, and how to implement proper security controls.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* EXPLORE MORE TOOLS */}
+      <section id="tools" class="space-y-8 scroll-mt-20">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          <a
+            href="#tools"
+            class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+            aria-label="Link to Explore More Tools section"
+          >
+            Explore More Tools
+          </a>
+        </h2>
+
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+              <a
+                href="https://corsfix.com/tools/cors-tester"
+                target="_blank"
+                class="underline hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+              >
+                CORS Tester
+              </a>
+            </h3>
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Paste any API endpoint and instantly see if it supports CORS and
+              which headers it returns. Perfect for debugging and verifying your
+              CORS configuration.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+              <a
+                href="https://app.corsfix.com/playground"
+                target="_blank"
+                class="underline hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+              >
+                CORS Proxy Playground
+              </a>
+            </h3>
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Bypass CORS errors in development by routing your requests through
+              our CORS proxy. Test and experiment with cross-origin requests in
+              a safe environment.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
   </main>
 </Layout>
