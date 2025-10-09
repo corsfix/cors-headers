@@ -25,13 +25,11 @@ const { data } = Astro.props;
 ---
 
 <main
-  class="text-gray-900 dark:text-gray-100 font-sans px-4 sm:px-6 py-8 max-w-5xl mx-auto"
+  class="text-gray-900 dark:text-gray-100 font-sans px-4 sm:px-6 pt-10 pb-20 max-w-5xl mx-auto"
 >
   <!-- Title block -->
   <header class="mb-10">
-    <h1
-      class="text-3xl sm:text-4xl font-semibold text-gray-900 dark:text-gray-100"
-    >
+    <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-100">
       {data.name}
     </h1>
   </header>
@@ -44,13 +42,13 @@ const { data } = Astro.props;
 
     <!-- SYNTAX -->
     <section id="syntax" class="space-y-4 scroll-mt-20">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+      <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
         <a
           href="#syntax"
           class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
           aria-label="Link to Syntax & allowed values section"
         >
-          Syntax & allowed values
+          Syntax & Values
         </a>
       </h2>
       <pre
@@ -61,20 +59,20 @@ const { data } = Astro.props;
 
     <!-- CODE EXAMPLES -->
     <section id="examples" class="space-y-4 scroll-mt-20">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+      <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
         <a
           href="#examples"
           class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
           aria-label="Link to Code examples section"
         >
-          Code examples
+          Examples
         </a>
       </h2>
       <div class="space-y-4">
         {
           data.examples.server && (
             <div>
-              <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 SERVER
               </h3>
               <pre
@@ -87,7 +85,7 @@ const { data } = Astro.props;
         {
           data.examples.client && (
             <div>
-              <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 CLIENT
               </h3>
               <pre
@@ -103,19 +101,19 @@ const { data } = Astro.props;
     <!-- ERRORS -->
     {
       data.errors.length > 0 && (
-        <section id="errors" class="space-y-4 scroll-mt-20">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+        <section id="errors" class="space-y-8 scroll-mt-20">
+          <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
             <a
               href="#errors"
               class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
               aria-label="Link to Common errors & fixes section"
             >
-              Common errors & fixes
+              Common Errors & Fixes
             </a>
           </h2>
           {data.errors.map(({ msg, fix }) => (
             <div class="space-y-2">
-              <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
+              <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {msg}
               </h3>
               <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
@@ -128,20 +126,20 @@ const { data } = Astro.props;
     }
 
     <!-- FAQ -->
-    <section id="faq" class="space-y-4 scroll-mt-20">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+    <section id="faq" class="space-y-8 scroll-mt-20">
+      <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
         <a
           href="#faq"
           class="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
           aria-label="Link to Frequently asked questions section"
         >
-          Frequently asked questions
+          Frequently Asked Questions
         </a>
       </h2>
       {
         data.faq.map(({ q, a }) => (
           <div class="space-y-2">
-            <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
               {q}
             </h3>
             <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
