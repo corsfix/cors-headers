@@ -7,7 +7,7 @@ const headerData: HeaderData = {
   slug: "access-control-request-headers",
   description:
     "The Access-Control-Request-Headers header is automatically sent by the browser during preflight requests. Lists the headers that will be included in the actual request, allowing the server to approve or deny them.",
-  syntax: `Access-Control-Request-Headers: <header-name>, <header-name>, ...`,
+  syntax: `Access-Control-Request-Headers: <header>, <header>, ...`,
   examples: {
     client: `// When you make a request with custom headers:
 fetch('https://api.example.com/data', {

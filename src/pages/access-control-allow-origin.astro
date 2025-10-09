@@ -7,8 +7,7 @@ const headerData: HeaderData = {
   slug: "access-control-allow-origin",
   description:
     "Browsers by default enforce the Same-Origin Policy, which controls how webpages interact with each other. This includes preventing a website from communicating with resources from a different origin. The Access-Control-Allow-Origin header relaxes this policy by specifying which origins have access to its content. Without this header, browsers will not be able to read the response from the other origin.",
-  syntax: `Access-Control-Allow-Origin: https://example.com
-Access-Control-Allow-Origin: https://example.com:4242
+  syntax: `Access-Control-Allow-Origin: <origin>
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Origin: null`,
   examples: {

@@ -7,7 +7,7 @@ const headerData: HeaderData = {
   slug: "access-control-max-age",
   description:
     "The `Access-Control-Max-Age` header tells browsers how long they can cache the results of a CORS preflight request. The header is part of the preflight request response and controls how long the browser can cache the preflight result (the information about which methods and headers are allowed for a specific resource). Caching the preflight response is crucial for performance, as it reduces the number of preflight requests that need to be made. Normally, every CORS request would require a preflight, but with this header, subsequent identical CORS requests can skip the preflight check for the duration specified, thereby reducing latency.",
-  syntax: `Access-Control-Max-Age: 86400`,
+  syntax: `Access-Control-Max-Age: <seconds>`,
   examples: {
     server: `// Express.js (Node.js) example (server-side)
 const express = require('express');

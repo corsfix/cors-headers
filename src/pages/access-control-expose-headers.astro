@@ -7,8 +7,8 @@ const headerData: HeaderData = {
   slug: "access-control-expose-headers",
   description:
     "The Access-Control-Expose-Headers header specifies which response headers can be accessed by client-side JavaScript in cross-origin requests. In cross-origin requests, by default, browsers only expose certain headers to client JavaScript, which are CORS-safelisted headers. In order for client JavaScript to read other headers, they must be explicitly set via the Access-Control-Expose-Headers (ACEH) header. This header lets client JS read **non-safelisted response headers**.",
-  syntax: `Access-Control-Expose-Headers: X-Custom-Header
-Access-Control-Expose-Headers: X-RateLimit-Remaining, X-Total-Count
+  syntax: `Access-Control-Expose-Headers: <header>
+Access-Control-Expose-Headers: <header>, <header>, ...
 Access-Control-Expose-Headers: *`,
   examples: {
     server: `// Express.js (Node.js) example (server-side)
