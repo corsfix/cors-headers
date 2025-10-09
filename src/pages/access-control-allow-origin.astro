@@ -7,9 +7,12 @@ const headerData: HeaderData = {
   slug: "access-control-allow-origin",
   description:
     "Browsers by default enforce the Same-Origin Policy, which controls how webpages interact with each other. This includes preventing a website from communicating with resources from a different origin. The Access-Control-Allow-Origin header relaxes this policy by specifying which origins have access to its content. Without this header, browsers will not be able to read the response from the other origin.",
-  syntax: `Access-Control-Allow-Origin: <origin>
+  syntax: {
+    code: `Access-Control-Allow-Origin: <origin>
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Origin: null`,
+    description: "The Access-Control-Allow-Origin header accepts a single origin value (e.g., `https://example.com`) to specify which origin is allowed to access the resource. It also supports the wildcard `*` to allow requests from any origin. Additionally, it accepts `null` for requests originating from local files (`file://`) or sandboxed iframes, though this is generally discouraged for security reasons.",
+  },
   examples: {
     server: `// Express.js (Node.js) example (server-side)
 const express = require('express');
