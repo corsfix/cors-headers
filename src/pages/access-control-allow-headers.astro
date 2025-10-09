@@ -13,54 +13,23 @@ Access-Control-Allow-Headers: <header>, <header>, ...
 Access-Control-Allow-Headers: *`,
     description: "The Access-Control-Allow-Headers header accepts one or more header names (e.g., `X-Custom-Header` or `Content-Type, Authorization`) to specify which headers are allowed in the actual request. Additionally, the wildcard `*` can be used to allow all headers.",
   },
-  examples: {
-    server: `// Express.js (Node.js) example (server-side)
-const express = require('express');
-const app = express();
-
-// Middleware to handle CORS headers for preflight requests
-app.use((req, res, next) => {
-  // Allow requests from a specific origin
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
-  
-  // Handle preflight OPTIONS requests
-  if (req.method === 'OPTIONS') {
-    // Specify which headers are allowed in the actual request
-    res.setHeader('Access-Control-Allow-Headers', 'X-API-Key, X-Trace-Id, Content-Type');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.status(204).send();
-    return;
-  }
-  
-  next();
-});
-
-app.get('/data', (req, res) => {
-  res.json({ message: 'This is CORS-enabled data with custom headers!' });
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(\`Server running on port \${port}\`);
-});`,
-    client: `// JavaScript Fetch API example (client-side)
-fetch('https://api.example.com/data', {
-  method: 'GET',
-  headers: {
-    'X-API-Key': 'your-api-key',
-    'X-Trace-Id': 'trace-123',
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-})
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`,
-  },
+  examples: [
+    {
+      title: "Allowing a single custom header",
+      description: "Permits the `X-API-Key` header to be used in the actual cross-origin request.",
+      code: `Access-Control-Allow-Headers: X-API-Key`,
+    },
+    {
+      title: "Allowing multiple headers",
+      description: "Permits multiple headers such as `Content-Type` and `Authorization` to be used in the actual request. Headers are comma-separated.",
+      code: `Access-Control-Allow-Headers: Content-Type, Authorization`,
+    },
+    {
+      title: "Allowing all headers",
+      description: "Permits any header to be used in the actual request. This is convenient but less secure than explicitly listing allowed headers.",
+      code: `Access-Control-Allow-Headers: *`,
+    },
+  ],
   errors: [
     {
       msg: "Missing token (e.g., 'xyz') in the CORS `Access-Control-Allow-Headers` header.",

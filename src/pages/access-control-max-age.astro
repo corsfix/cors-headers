@@ -11,33 +11,18 @@ const headerData: HeaderData = {
     code: `Access-Control-Max-Age: <seconds>`,
     description: "The Access-Control-Max-Age header accepts a numeric value representing the number of seconds (e.g., `86400` for one day) that the preflight response can be cached by the browser. This reduces the number of preflight requests for subsequent identical CORS requests during the specified time period.",
   },
-  examples: {
-    server: `// Express.js (Node.js) example (server-side)
-const express = require('express');
-const app = express();
-
-// Middleware to handle CORS preflight requests
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  // Cache preflight response for 1 day (86400 seconds)
-  res.setHeader('Access-Control-Max-Age', '86400');
-  
-  res.status(204).send();
-});
-
-app.get('/data', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
-  res.json({ message: 'This is CORS-enabled data!' });
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(\`Server running on port \${port}\`);
-});`,
-  },
+  examples: [
+    {
+      title: "Caching preflight for 1 hour",
+      description: "The browser can cache the preflight response for 3600 seconds (1 hour), reducing the number of preflight requests.",
+      code: `Access-Control-Max-Age: 3600`,
+    },
+    {
+      title: "Caching preflight for 1 day",
+      description: "The browser can cache the preflight response for 86400 seconds (1 day), significantly improving performance for frequently accessed resources.",
+      code: `Access-Control-Max-Age: 86400`,
+    },
+  ],
   errors: [
     {
       msg: "Preflight requests still being sent for every request despite setting this header",

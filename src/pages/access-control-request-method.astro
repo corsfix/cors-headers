@@ -11,18 +11,18 @@ const headerData: HeaderData = {
     code: `Access-Control-Request-Method: <method>`,
     description: "The Access-Control-Request-Method header is automatically set by the browser during preflight requests. It contains the HTTP method (e.g., `PUT` or `DELETE`) that will be used in the actual cross-origin request.",
   },
-  examples: {
-    client: `// When you make a request with a non-simple method:
-fetch('https://api.example.com/data', {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-// Browser automatically sends preflight with:
-// Access-Control-Request-Method: PUT`,
-  },
+  examples: [
+    {
+      title: "Preflight for PUT request",
+      description: "When a request uses the `PUT` method, the browser automatically sends this header in the preflight request to inform the server which method will be used.",
+      code: `Access-Control-Request-Method: PUT`,
+    },
+    {
+      title: "Preflight for DELETE request",
+      description: "When a request uses the `DELETE` method, the browser automatically sends this header in the preflight request.",
+      code: `Access-Control-Request-Method: DELETE`,
+    },
+  ],
   errors: [],
   faq: [
     {

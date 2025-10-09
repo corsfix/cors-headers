@@ -11,19 +11,13 @@ const headerData: HeaderData = {
     code: `Access-Control-Request-Headers: <header>, <header>, ...`,
     description: "The Access-Control-Request-Headers header is automatically set by the browser during preflight requests. It contains a comma-separated list of header names (e.g., `content-type, x-custom-header`) that will be included in the actual cross-origin request.",
   },
-  examples: {
-    client: `// When you make a request with custom headers:
-fetch('https://api.example.com/data', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'X-Custom-Header': 'value'
-  }
-});
-
-// Browser automatically sends preflight with:
-// Access-Control-Request-Headers: content-type, x-custom-header`,
-  },
+  examples: [
+    {
+      title: "Preflight with custom headers",
+      description: "When a request includes custom headers like `X-Custom-Header` and `X-API-Key`, the browser automatically sends this header in the preflight request to inform the server which headers will be used.",
+      code: `Access-Control-Request-Headers: x-custom-header, x-api-key`,
+    },
+  ],
   errors: [],
   faq: [
     {

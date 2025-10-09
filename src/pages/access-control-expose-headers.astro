@@ -13,62 +13,23 @@ Access-Control-Expose-Headers: <header>, <header>, ...
 Access-Control-Expose-Headers: *`,
     description: "The Access-Control-Expose-Headers header accepts one or more response header names (e.g., `X-Total-Count` or `X-Total-Count, X-RateLimit-Remaining`) to specify which headers can be accessed by client-side JavaScript. Additionally, the wildcard `*` can be used to expose all non-safelisted headers.",
   },
-  examples: {
-    server: `// Express.js (Node.js) example (server-side)
-const express = require('express');
-const app = express();
-
-// Middleware to set CORS headers
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
-  
-  // Expose custom headers to client JavaScript
-  res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, X-RateLimit-Remaining');
-  next();
-});
-
-app.get('/api/users', (req, res) => {
-  // Set custom headers that will be exposed to the client
-  res.setHeader('X-Total-Count', '150');
-  res.setHeader('X-RateLimit-Remaining', '99');
-  
-  res.json([
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' }
-  ]);
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(\`Server running on port \${port}\`);
-});`,
-    client: `// JavaScript Fetch API example (client-side)
-fetch('https://api.example.com/users', {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  
-  // These headers are now accessible because the server
-  // included them in Access-Control-Expose-Headers
-  const totalCount = response.headers.get('X-Total-Count');
-  const rateLimit = response.headers.get('X-RateLimit-Remaining');
-  
-  console.log('Total items:', totalCount);
-  console.log('Rate limit remaining:', rateLimit);
-  
-  return response.json();
-})
-.then(data => {
-  console.log('Users:', data);
-})
-.catch(error => console.error('Error:', error));`,
-  },
+  examples: [
+    {
+      title: "Exposing a single custom header",
+      description: "Makes the `X-Total-Count` response header accessible to client-side JavaScript.",
+      code: `Access-Control-Expose-Headers: X-Total-Count`,
+    },
+    {
+      title: "Exposing multiple headers",
+      description: "Makes multiple custom headers like `X-Total-Count` and `X-RateLimit-Remaining` accessible to client-side JavaScript. Headers are comma-separated.",
+      code: `Access-Control-Expose-Headers: X-Total-Count, X-RateLimit-Remaining`,
+    },
+    {
+      title: "Exposing all non-safelisted headers",
+      description: "Makes all non-safelisted response headers accessible to client-side JavaScript.",
+      code: `Access-Control-Expose-Headers: *`,
+    },
+  ],
   errors: [
     {
       msg: "Header X can't be read by client JavaScript.",

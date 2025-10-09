@@ -13,54 +13,23 @@ Access-Control-Allow-Methods: <method>, <method>, ...
 Access-Control-Allow-Methods: *`,
     description: "The Access-Control-Allow-Methods header accepts one or more HTTP methods (e.g., `GET` or `GET, POST, PUT, DELETE`) to specify which methods are allowed for the cross-origin request. Additionally, the wildcard `*` can be used to allow all methods.",
   },
-  examples: {
-    server: `// Express.js (Node.js) example (server-side)
-const express = require('express');
-const app = express();
-
-// Middleware to handle CORS preflight and actual requests
-app.use((req, res, next) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
-
-  // Handle preflight OPTIONS request
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');  
-    res.status(204).end();
-    return;
-  }
-  
-  next();
-});
-
-app.put('/data', (req, res) => {
-  res.json({ message: 'Data updated successfully!' });
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(\`Server running on port \${port}\`);
-});`,
-    client: `// JavaScript Fetch API example (client-side)
-fetch('https://api.example.com/data', {
-  method: 'PUT', // This triggers a preflight request
-  headers: {
-    'Content-Type': 'application/json',
-    // No ACAM header is set on the request from the client.
-    // The server will respond with the ACAM header during preflight.
-  },
-  body: JSON.stringify({ key: 'value' })
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-})
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`,
-  },
+  examples: [
+    {
+      title: "Allowing a single method",
+      description: "Permits only `GET` requests for this cross-origin resource.",
+      code: `Access-Control-Allow-Methods: GET`,
+    },
+    {
+      title: "Allowing multiple methods",
+      description: "Permits multiple HTTP methods such as `GET`, `POST`, `PUT`, and `DELETE`. Methods are comma-separated.",
+      code: `Access-Control-Allow-Methods: GET, POST, PUT, DELETE`,
+    },
+    {
+      title: "Allowing all methods",
+      description: "Permits any HTTP method to be used for this cross-origin resource.",
+      code: `Access-Control-Allow-Methods: *`,
+    },
+  ],
   errors: [
     {
       msg: "Did not find method in CORS header Access-Control-Allow-Methods",

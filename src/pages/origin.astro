@@ -12,48 +12,18 @@ const headerData: HeaderData = {
 Origin: null`,
     description: "The Origin header is automatically set by the browser and contains the origin value (e.g., `https://example.com`) indicating where the request originated from. It can also have the value `null` for requests from local files (`file://`), sandboxed iframes, or certain privacy contexts.",
   },
-  examples: {
-    client: `// Browser automatically sets Origin header on cross-origin requests
-fetch('https://api.example.com/data', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ message: 'Hello' })
-  // Browser automatically adds: Origin: https://your-domain.com
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));`,
-    server: `// Express.js (Node.js) example (server-side)
-const express = require('express');
-const app = express();
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  
-  if (origin) {
-    console.log(\`Request from origin: \${origin}\`);
-    
-    // Validate origin against allowlist
-    const allowedOrigins = ['https://your-frontend.com', 'https://app.example.com'];
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-  }
-  
-  next();
-});
-
-app.get('/data', (req, res) => {
-  res.json({ message: 'Hello from API' });
-});
-
-const port = 3001;
-app.listen(port, () => {
-  console.log(\`Server running on port \${port}\`);
-});`,
-  },
+  examples: [
+    {
+      title: "Cross-origin request from a website",
+      description: "The browser automatically sets the Origin header when making a cross-origin request from `https://example.com`.",
+      code: `Origin: https://example.com`,
+    },
+    {
+      title: "Null origin from local file or sandboxed iframe",
+      description: "The Origin header is set to `null` for requests from local files (`file://`), sandboxed iframes, or certain privacy contexts.",
+      code: `Origin: null`,
+    },
+  ],
   errors: [
     {
       msg: "Origin header missing or doesn't match server expectations",
