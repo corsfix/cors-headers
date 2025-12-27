@@ -82,18 +82,17 @@ if (baseUrl.endsWith("/")) {
       {/* DESCRIPTION */}
       <div class="space-y-4">
         <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-          CORS (Cross-Origin Resource Sharing) headers are HTTP headers that
-          control how web browsers handle requests between different origins.
-          When your frontend application makes a request to an API on a
-          different domain, these headers determine whether the browser allows
-          the response to be read.
+          CORS headers are rules that control how a website can interact with
+          other websites or APIs. They act as a set of permissions for the
+          browser, defining which requests can be sent and what data can be
+          shared between different sources.
         </p>
         <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-          This resource provides comprehensive documentation for all
+          In this resource, you will find comprehensive documentation for all
           CORS-related headers, including syntax, practical examples, common
-          errors, and solutions. Whether you're troubleshooting a CORS error or
-          implementing secure cross-origin access, you'll find the information
-          you need here.
+          errors, and solutions. Whether you're troubleshooting a CORS error on
+          your website or developing an API, you'll find the information you
+          need here.
         </p>
       </div>
 
@@ -191,8 +190,24 @@ if (baseUrl.endsWith("/")) {
           <div class="space-y-2">
             <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
               <a
+                href="https://corsfix.com"
+                class="underline hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+              >
+                CORS Proxy
+              </a>
+            </h3>
+            <p
+              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              Bypass CORS errors in your website by routing your requests
+              through Corsfix CORS proxy. Easily fetch any data for your website
+              with zero hassle.
+            </p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+              <a
                 href="https://corsfix.com/tools/cors-tester"
-                target="_blank"
                 class="underline hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
               >
                 CORS Tester
@@ -204,25 +219,6 @@ if (baseUrl.endsWith("/")) {
               Paste any API endpoint and instantly see if it supports CORS and
               which headers it returns. Perfect for debugging and verifying your
               CORS configuration.
-            </p>
-          </div>
-
-          <div class="space-y-2">
-            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-              <a
-                href="https://app.corsfix.com/playground"
-                target="_blank"
-                class="underline hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
-              >
-                CORS Proxy Playground
-              </a>
-            </h3>
-            <p
-              class="text-base leading-relaxed text-gray-600 dark:text-gray-400"
-            >
-              Bypass CORS errors in development by routing your requests through
-              our CORS proxy. Test and experiment with cross-origin requests in
-              a safe environment.
             </p>
           </div>
         </div>
